@@ -1,31 +1,56 @@
 from pico2d import *
 
 open_canvas(1250,700)
-ch=load_image("1.png")
-frame=0
 
-running=True
-y=100
+
+class player1:
+    def __init__(self):
+        self.x=1100
+        self.y=100
+        self.frame = 0
+        self.image = load_image('1.png')
+    def update(self):
+        self.frame=(self.frame+1)%5
+        delay(0.05)
+    def render(self):
+        self.image.clip_draw(self.frame*40,0,40,40,self.x,self.y,200,200)
+
 
 def handle_events():
     global running
-    global mx,my
-    global frame
-    global y
     events = get_events()
     for event in events:
-        if event.type == SDL_QUIT:
+        if event.key == SDLK_ESCAPE:
             running = False
-        elif event.type == SDL_KEYDOWN and event.key == SDLK_SPACE:
-            y+=10
+        else:
+            pass
+
+def reset_world():
+    global running
+    global world
+    running = True
+    world = []  #월드 리스트안에 객체들을 담을예정
+    p1=player1()
+    world.append(p1)
+
+def update_world():
+    for o in world:
+        o.update()
+
+
+def render_world():
+    clear_canvas()
+    for o in world:
+        o.render()
+    update_canvas()
+
+reset_world()
 
 while(running):
-    clear_canvas()
-    handle_events()  # 사용자 입력을 받는다
-    ch.clip_draw(frame*40,0,40,40,1100,y,200,200)
-    frame = (frame + 1) % 5
-    update_canvas()
-    delay(0.1)
+    handle_events()
+    update_world()
+    render_world()
+
 
 
 
