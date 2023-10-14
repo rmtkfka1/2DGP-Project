@@ -22,7 +22,7 @@ def handle_events():
 while(running):
     clear_canvas()
     handle_events()  # 사용자 입력을 받는다
-    ch.clip_draw(frame*40,0,41,40,1100,y,200,200)
+    ch.clip_draw(frame*40,0,40,40,1100,y,200,200)
     frame = (frame + 1) % 5
     update_canvas()
     delay(0.1)
