@@ -1,6 +1,7 @@
 
 from player1 import *
 from player2 import *
+from background import *
 from pico2d import *
 
 def handle_events():
@@ -11,16 +12,20 @@ def handle_events():
             running = False
         else :
             p1.handle_event(event)
+            p2.handle_event(event)
 
 def reset_world():
     global running
     global world
     global p1
+    global p2
 
     world=[]
     running = True
     p1=player1()
     p2=player2()
+    bg=background()
+    world.append(bg)
     world.append(p1)
     world.append(p2)
 

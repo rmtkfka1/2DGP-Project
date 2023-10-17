@@ -4,7 +4,7 @@ from pico2d import *
 class player2:
     def __init__(self):
         self.x=200
-        self.y=230
+        self.y=180
         self.frame = 0
         self.image = load_image('234.png')
     def update(self):

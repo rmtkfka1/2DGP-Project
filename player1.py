@@ -3,7 +3,7 @@ from pico2d import *
 class player1:
     def __init__(self):
         self.x=1000
-        self.y=230
+        self.y=180
         self.frame = 0
         self.image = load_image('123.png')
     def update(self):
