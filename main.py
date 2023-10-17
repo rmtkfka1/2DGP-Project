@@ -1,6 +1,7 @@
-from pico2d import *
-from player1 import *
 
+from player1 import *
+from player2 import *
+from pico2d import *
 
 def handle_events():
     global running
@@ -19,7 +20,9 @@ def reset_world():
     world=[]
     running = True
     p1=player1()
+    p2=player2()
     world.append(p1)
+    world.append(p2)
 
 def update_world():
 
@@ -28,16 +31,18 @@ def update_world():
 
 def render_world():
     clear_canvas()
+
     for o in world:
         o.render()
     update_canvas()
 
-open_canvas(1250, 700)
+open_canvas(1200, 700)
 reset_world()
+
 
 while(running):
     handle_events()
     update_world()
     render_world()
-    delay(0.01)
+    delay(0.05)
 

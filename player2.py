@@ -1,11 +1,12 @@
 from pico2d import *
 
-class player1:
+
+class player2:
     def __init__(self):
-        self.x=1000
+        self.x=200
         self.y=230
         self.frame = 0
-        self.image = load_image('123.png')
+        self.image = load_image('234.png')
     def update(self):
         self.frame=(self.frame+1)%5
     def handle_event(self,e):
@@ -15,6 +16,3 @@ class player1:
 
     def render(self):
         self.image.clip_draw(self.frame*115,0,115,175,self.x,self.y)
-
-
-
