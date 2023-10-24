@@ -1,4 +1,4 @@
-
+import game_world
 from player1 import *
 from player2 import *
 from background import *
@@ -14,36 +14,34 @@ def handle_events():
             p1.handle_event(event)
             p2.handle_event(event)
 
-def reset_world():
+
+def create_world():
     global running
-    global world
     global p1
     global p2
+    global bg
 
-    world=[]
     running = True
-    p1=player1()
-    p2=player2()
-    bg=background()
-    world.append(bg)
-    world.append(p1)
-    world.append(p2)
+    p1 = player1()
+    p2 = player2()
+    bg =background()
+
+    game_world.addobject(bg)
+    game_world.addobject(p1)
+    game_world.addobject(p2)
+
+
 
 def update_world():
-
-    for o in world:
-        o.update()
+    game_world.update()
 
 def render_world():
     clear_canvas()
-
-    for o in world:
-        o.render()
+    game_world.render()
     update_canvas()
 
 open_canvas(1200, 700)
-reset_world()
-
+create_world()
 
 while(running):
     handle_events()
