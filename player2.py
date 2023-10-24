@@ -6,12 +6,11 @@ class player2:
         self.x=200
         self.y=180
         self.frame = 0
-        self.image = load_image('234.png')
+        self.image = load_image('p2_img.png')
     def update(self):
         self.frame=(self.frame+1)%5
     def handle_event(self,e):
-        if e.type==SDL_KEYDOWN and e.key == SDLK_SPACE:
-            self.y+=10
+        pass
 
 
     def render(self):
