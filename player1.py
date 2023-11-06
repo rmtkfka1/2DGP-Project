@@ -11,8 +11,6 @@ def time_out(e):
     return e[0] == 'TIME_OUT'
 
 
-
-
 class p1_state_machine:
     def __init__(self, p1):
         self.p1 =p1
@@ -27,6 +25,8 @@ class p1_state_machine:
         self.cur_state.update(self.p1)
     def render(self):
         self.cur_state.render(self.p1)
+
+
 
     def handle_event(self, e):
         for check_event, next_state in self.table[self.cur_state].items():
@@ -55,6 +55,14 @@ class player1:
 
     def render(self):
         self.state_machine.render()
+        draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        cur_state = self.state_machine.cur_state
+        if cur_state == idle:
+            return self.x-60,self.y-90,self.x-15,self.y+60
+        if cur_state == jump:
+            return self.x-60, self.y -60, self.x -15, self.y + 90
 
 
 

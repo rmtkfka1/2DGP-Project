@@ -52,6 +52,14 @@ class player2:
 
     def render(self):
         self.state_machine.render()
+        draw_rectangle(*self.get_bb())
+
+    def get_bb(self):
+        cur_state = self.state_machine.cur_state
+        if cur_state == idle:
+            return self.x+15,self.y-90,self.x+60,self.y+60
+        if cur_state == jump:
+            return self.x+15, self.y-60, self.x+60, self.y +90
 
 
 

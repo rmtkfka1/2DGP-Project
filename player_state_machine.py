@@ -2,7 +2,7 @@ from pico2d import get_time
 
 import game_framework
 
-TIME_PER_ACTION = 2.0
+TIME_PER_ACTION = 1.0
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 6
 
@@ -17,7 +17,7 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 class idle:
     @staticmethod
     def enter(player, e):
-        player.gravity = 1
+        player.gravity = 0.05
 
 
     @staticmethod
@@ -35,9 +35,9 @@ class idle:
             player.frame_divide = 0
 
         if(player.y>180):
-            player.y -=  player.gravity*RUN_SPEED_PPS * game_framework.frame_time
+            player.y -= RUN_SPEED_PPS * game_framework.frame_time +  player.gravity
 
-        player.gravity += 3.0 * game_framework.frame_time
+            player.gravity += 1.0 *game_framework.frame_time
 
 
 

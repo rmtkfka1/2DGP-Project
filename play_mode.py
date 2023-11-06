@@ -1,4 +1,5 @@
 import game_world
+from ball import Ball
 from player1 import *
 from player2 import *
 from background import *
@@ -20,19 +21,28 @@ def init():
     global p1
     global p2
     global bg
+    global ball
 
     running = True
     p1 = player1()
     p2 = player2()
     bg =background()
+    ball=Ball()
 
     game_world.addobject(bg,0)
     game_world.addobject(p1,1)
     game_world.addobject(p2,1)
-
+    game_world.addobject(ball,2)
 
 def update():
     game_world.update()
+
+    if game_world.collide(p2,ball):
+        print("p2와 공 충돌")
+
+
+    if game_world.collide(ball,p1):
+        print("p1과 공 충돌")
 
 
 def draw():
