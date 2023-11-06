@@ -40,7 +40,7 @@ class player2:
         self.y=180
         self.frame = 0
         self.frame_divide=0.0
-        self.image = load_image('p2_img.png')
+        self.image = load_image('resource/p2_img.png')
         self.state_machine=p2_state_machine(self)
         self.state_machine.start()
 

@@ -4,7 +4,7 @@ import game_world
 
 class Ball:
     def __init__(self):
-        self.image =load_image('tennis_ball4.png')
+        self.image =load_image('resource/tennis_ball4.png')
         self.x=300
         self.y=200
         self.speed=100
