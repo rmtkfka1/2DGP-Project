@@ -6,6 +6,8 @@ from pico2d import *
 
 world=[[],[],[],[]]
 
+collusion_world = {}
+
 def addobject(o,depth=0):
     world[depth].append(o)
 
@@ -24,10 +26,20 @@ def render():
         for o in layer:
             o.render()
 
+def remove_collusion_object(o):
+    for pairs in collusion_world.value():
+        if o in pairs[0]:
+            pairs[0].remove(o)
+        if o in pairs[1]:
+            pairs[1].remove(o)
+
+
 def remove_object(o):
     for layer in world:
         if o in layer:
             layer.remove(o)
+            remove_collusion_object(o)
+            del o
             return
     raise ValueError('Cannot delete non existing object')
 
@@ -50,3 +62,21 @@ def reflection_vector(x,y,nx,ny):
     new_x = x + 2 * nx * ((-x * nx + -y * ny))
     new_y = y + 2 * ny * ((-x * nx + -y * ny))
     return new_x,new_y
+
+def add_collusion_pair(group,a,b):
+    if group not in collusion_world:
+        print(f"new group {group} added ")
+        collusion_world[group]=[[],[]]
+    if a:
+        collusion_world[group][0].append(a)
+        collusion_world[group][1].append(b)
+
+
+def handle_collusions():
+    for group , pairs in collusion_world.items():
+        for a in pairs[0]:
+            for b in pairs[1]:
+                if collide(a,b):
+                    a.handle_collusion(group,b)
+                    b.handle_collusion(group,a)
+

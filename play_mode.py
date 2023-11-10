@@ -34,16 +34,13 @@ def init():
     game_world.addobject(p2,1)
     game_world.addobject(ball,2)
 
+    game_world.add_collusion_pair("player1:ball",p1,ball)
+    game_world.add_collusion_pair("player2:ball",p2,ball)
+
 def update():
     game_world.update()
 
-    if game_world.collide(p2,ball):
-        print("p2와 공 충돌")
-
-
-    if game_world.collide(ball,p1):
-        print("p1과 공 충돌")
-
+    game_world.handle_collusions()
 
 def draw():
     clear_canvas()

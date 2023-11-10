@@ -64,6 +64,10 @@ class player1:
         if cur_state == jump:
             return self.x-60, self.y -60, self.x -15, self.y + 90
 
+    def handle_collusion(self,group,other):
+        if group == "player1:ball":
+            print("공과 플레이어1 충돌")
+
 
 
 
