@@ -1,5 +1,6 @@
 import time
 
+running = True
 
 from pico2d import delay
 
@@ -42,7 +43,6 @@ def quit():
 
 def run(start_mode):
     global running, stack
-    running = True
     stack = [start_mode]
     start_mode.init()
 
