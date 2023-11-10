@@ -4,7 +4,7 @@ from background import *
 from pico2d import *
 
 
-world=[[],[],[],[]]
+world=[[],[],[],[],[]]
 
 collusion_world = {}
 

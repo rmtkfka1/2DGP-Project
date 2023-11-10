@@ -16,10 +16,12 @@ def handle_events():
             game_framework.running = False
         elif event.type == SDL_MOUSEMOTION:
             mx, my = event.x, 700 - 1 - event.y
-        if event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
-            if mx > 360 and mx< 900 and my>140 and my<280:
+        elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
+            if mx > 340 and mx< 880 and my>130 and my<260:
                 game_framework.change_mode(play_mode)
-
+        else:
+            p1.handle_event(event)
+            p2.handle_event(event)
 
 
 def init():
@@ -30,11 +32,32 @@ def init():
 
     running = True
 
-    bg =background_start()
+    bg =background()
+    seat = chair()
+    bar =safe_bar()
     ball=Ball()
+    layer1 = p1_layer()
+    layer2 = p2_layer()
+    myui = ui()
+    mylogo =logo()
+    p1=player1()
+    p2=player2()
 
     game_world.addobject(bg,0)
+    game_world.addobject(seat,1)
+    ##관중 2번 에다가 추가하면됨
+    game_world.addobject(bar,3)
+
+
+    game_world.addobject(layer1,3)
+    game_world.addobject(layer2,3)
+
+    game_world.addobject(myui,4)
     game_world.addobject(ball,2)
+
+    game_world.addobject(p1,3)
+    game_world.addobject(p2,3)
+    game_world.addobject(mylogo,3)
 
 
 def update():
@@ -44,8 +67,8 @@ def update():
 def draw():
     clear_canvas()
     game_world.render()
-    # draw_rectangle(360,300,890,430)
-    # draw_rectangle(360,140,900,280)
+    # draw_rectangle(340,300,880,430)
+    # draw_rectangle(340,130,880,260)
     update_canvas()
 
 
