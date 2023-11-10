@@ -40,9 +40,9 @@ class p1_state_machine:
 class player1:
     def __init__(self):
         self.x=1000
-        self.y=180
+        self.y=120
         self.frame = 0
-        self.frame_divide=0.0
+        # self.frame_divide=0.0
         self.image = load_image('resource/p1_img.png')
         self.state_machine=p1_state_machine(self)
         self.state_machine.start()
@@ -62,7 +62,7 @@ class player1:
         if cur_state == idle:
             return self.x-60,self.y-90,self.x-15,self.y+60
         if cur_state == jump:
-            return self.x-60, self.y -60, self.x -15, self.y + 90
+            return self.x - 60, self.y - 60, self.x - 15, self.y + 90
 
     def handle_collusion(self,group,other):
         if group == "player1:ball":

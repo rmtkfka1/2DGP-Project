@@ -37,9 +37,9 @@ class p2_state_machine:
 class player2:
     def __init__(self):
         self.x=200
-        self.y=180
+        self.y=120
         self.frame = 0
-        self.frame_divide=0.0
+        # self.frame_divide=0.0
         self.image = load_image('resource/p2_img.png')
         self.state_machine=p2_state_machine(self)
         self.state_machine.start()

@@ -4,7 +4,7 @@ class background:
     def __init__(self):
         self.x=1200//2
         self.y=700//2
-        self.image = load_image('resource/bg.png')
+        self.image = load_image('resource/bgnew.png')
     def update(self):
         pass
     def handle_event(self,e):

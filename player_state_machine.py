@@ -2,7 +2,7 @@ from pico2d import get_time
 
 import game_framework
 
-TIME_PER_ACTION = 1.0
+TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 6
 
@@ -26,15 +26,11 @@ class idle:
 
     @staticmethod
     def update(player):
-        player.frame_divide += 2
-        if (player.frame_divide >= 1):
-            if (player.frame == 0):
-                player.frame = 0
-            else:
-                player.frame -= 1
-            player.frame_divide = 0
+        if player.frame>0 :
+            player.frame -= (ACTION_PER_TIME*FRAMES_PER_ACTION * game_framework.frame_time)
 
-        if(player.y>180):
+
+        if(player.y>120):
             player.y -= RUN_SPEED_PPS * game_framework.frame_time +  player.gravity
 
             player.gravity += 1.0 *game_framework.frame_time
@@ -58,10 +54,10 @@ class jump:
 
     @staticmethod
     def update(player):
-        if (player.frame == 5):
-            player.frame = 5
-        else:
-            player.frame += 1
+
+        if(player.frame < 5):
+            player.frame += (ACTION_PER_TIME * 2*FRAMES_PER_ACTION * game_framework.frame_time)
+
 
         if(player.y <600):
             player.y += 300 * game_framework.frame_time
