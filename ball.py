@@ -55,86 +55,121 @@ class Ball:
 
 
     def handle_collusion(self,group,other):
-        print(self.y - other.y)
         if group == "player1:ball":
-            cur_state = other.state_machine.cur_state
+            if (self.y > other.top):
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
+                self.going_vector = reflection
+                if (self.x < other.left):
+                    self.x -= 5
+                    return
 
-            if cur_state==idle:
-                if(self.y > other.y + 65):
-                    reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
-                    self.going_vector = reflection
-                    if (self.x < other.x -45//2):
-                        self.x -= 5
-                        return
+                if (self.x >= other.right):
+                    self.x += 5
+                    return
 
-                    if (self.x >= other.x+45//2):
-                        self.x += 5
-                        return
+            if (self.y < other.bottom):
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
+                self.going_vector = reflection
+                if (self.x < other.left):
+                    self.x -= 5
+                    return
 
-            elif cur_state==jump:
-                if (self.y > other.y + 95):
-                    reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
-                    self.going_vector = reflection
-                    if (self.x < other.x):
-                        self.x -= 5
-                        return
+                if (self.x >= other.right):
+                    self.x += 5
+                    return
 
-                    if (self.x >= other.x):
-                        self.x += 5
-                        return
-
-
-
-            if(20 <= self.y-other.y and self.y-other.y <=40):
-                self.speed=1.3
+            if other.top - self.y < 30:
+                print("최상단 맞음")
+                self.speed=0.8
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
                 self.going_vector = reflection
+                return
 
-
-            else:
-                self.speed=1.0
+            if other.top - self.y < 60:
+                print("상단 맞음")
+                self.speed = 0.9
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
                 self.going_vector = reflection
+                return
+
+            if other.top - self.y < 90:
+                print("기운데 맞음")
+                self.speed=1.2
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1,0)
+                self.going_vector = reflection
+                return
+
+            if other.top - self.y < 120:
+                print("하단 맞음")
+                self.speed=0.9
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
+                self.going_vector = reflection
+                return
+
+            if other.top - self.y < 150:
+                print("최하단 맞음")
+                self.speed=0.8
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
+                self.going_vector = reflection
+                return
 
 
         if group == "player2:ball":
-            cur_state = other.state_machine.cur_state
 
-            if cur_state == idle:
-                if (self.y > other.y + 65):
-                    reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
-                    self.going_vector = reflection
-                    if (self.x < other.x):
-                        self.x -= 5
-                        return
+            if (self.y > other.top):
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
+                self.going_vector = reflection
+                if (self.x < other.left):
+                    self.x -= 5
+                    return
 
-                    if (self.x >= other.x):
-                        self.x += 5
-                        return
+                if (self.x >= other.right):
+                    self.x += 5
+                    return
 
-            elif cur_state == jump:
-                if (self.y > other.y + 95):
-                    reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
-                    self.going_vector = reflection
-                    if (self.x < other.x):
-                        self.x -= 5
-                        return
+            if (self.y < other.bottom):
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
+                self.going_vector = reflection
+                if (self.x < other.left):
+                    self.x -= 5
+                    return
 
-                    if (self.x >= other.x):
-                        self.x += 5
-                        return
+                if (self.x >= other.right):
+                    self.x += 5
+                    return
 
-
-
-            if (20 <= self.y - other.y and self.y - other.y <= 40):
-                self.speed = 1.3
+            if other.top - self.y < 30:
+                print("최상단 맞음")
+                self.speed = 0.8
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
                 self.going_vector = reflection
+                return
 
-            else:
-                self.speed = 1.0
+            if other.top - self.y < 60:
+                print("상단 맞음")
+                self.speed = 0.9
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
                 self.going_vector = reflection
+                return
 
+            if other.top - self.y < 90:
+                print("기운데 맞음")
+                self.speed = 1.2
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
+                self.going_vector = reflection
+                return
 
+            if other.top - self.y < 120:
+                print("하단 맞음")
+                self.speed = 0.9
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
+                self.going_vector = reflection
+                return
+
+            if other.top - self.y < 150:
+                print("최하단 맞음")
+                self.speed = 0.8
+                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
+                self.going_vector = reflection
+                return
 

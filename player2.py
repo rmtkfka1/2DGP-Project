@@ -39,7 +39,10 @@ class player2:
         self.x=200
         self.y=120
         self.frame = 0
-        # self.frame_divide=0.0
+        self.bottom = 120-90
+        self.top = 120+60
+        self.left = 200 + 59.9
+        self.right = 200 + 60
         self.image = load_image('resource/p2_img.png')
         self.state_machine=p2_state_machine(self)
         self.state_machine.start()
@@ -57,8 +60,12 @@ class player2:
     def get_bb(self):
         cur_state = self.state_machine.cur_state
         if cur_state == idle:
+            self.top = self.y +60
+            self.bottom= self.y-90
             return self.x+59.9,self.y-90,self.x+60,self.y+60
         if cur_state == jump:
+            self.top = self.y + 90
+            self.bottom = self.y - 60
             return self.x+59.9, self.y-60, self.x+60, self.y +90
 
     def handle_collusion(self, group, other):

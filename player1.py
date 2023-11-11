@@ -45,6 +45,10 @@ class player1:
         self.x = 1000
         self.y = 120
         self.frame = 0
+        self.bottom = 120-90
+        self.top = 120+60
+        self.left = 1000-60
+        self.right = 1000 - 59.9
         self.image = load_image('resource/p1_img.png')
         self.state_machine = p1_state_machine(self)
         self.state_machine.start()
@@ -59,11 +63,16 @@ class player1:
         self.state_machine.render()
         draw_rectangle(*self.get_bb())
 
+
     def get_bb(self):
         cur_state = self.state_machine.cur_state
         if cur_state == idle:
+            self.top = self.y +60
+            self.bottom= self.y-90
             return self.x - 60, self.y - 90, self.x - 59.9, self.y + 60
         if cur_state == jump:
+            self.top = self.y + 90
+            self.bottom = self.y - 60
             return self.x - 60, self.y - 60, self.x - 59.9, self.y + 90
 
     def handle_collusion(self, group, other):
