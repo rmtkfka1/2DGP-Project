@@ -63,6 +63,15 @@ def reflection_vector(x,y,nx,ny):
     new_y = y + 2 * ny * ((-x * nx + -y * ny))
     return new_x,new_y
 
+def normalize_vector(vector):
+        magnitude = math.sqrt(vector[0] ** 2 + vector[1] ** 2)
+        if magnitude != 0:
+            normalized_vector = (vector[0] / magnitude, vector[1] / magnitude)
+            return normalized_vector
+        else:
+            return vector
+
+
 def add_collusion_pair(group,a,b):
     if group not in collusion_world:
         print(f"new group {group} added ")

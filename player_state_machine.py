@@ -60,7 +60,7 @@ class jump:
 
 
         if(player.y <600):
-            player.y += 300 * game_framework.frame_time
+            player.y += 500 * game_framework.frame_time
 
         if(get_time()- player.wait_time>0.3):
             player.state_machine.handle_event(('TIME_OUT',0))
