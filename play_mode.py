@@ -34,13 +34,12 @@ def init():
 
     game_world.addobject(bg, 0)
 
-    game_world.addobject(ball, 2)
 
     game_world.addobject(seat, 1)
     #2번 레이어 에 관중추가
 
-
     game_world.addobject(bar, 3)
+    game_world.addobject(ball, 3)
     game_world.addobject(p1, 3)
     game_world.addobject(p2, 3)
 
