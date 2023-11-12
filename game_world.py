@@ -63,6 +63,16 @@ def reflection_vector(x,y,nx,ny):
     new_y = y + 2 * ny * ((-x * nx + -y * ny))
     return new_x,new_y
 
+def sliding_vector(x,y,nx,ny):
+    new_x = x - nx*(x*nx)
+    new_y = y - ny*(y*ny)
+    return new_x, new_y
+
+
+def reverse_vector(x,y):
+    return -x,y
+
+
 def normalize_vector(vector):
         magnitude = math.sqrt(vector[0] ** 2 + vector[1] ** 2)
         if magnitude != 0:
