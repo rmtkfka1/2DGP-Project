@@ -5,6 +5,8 @@ from player2 import *
 from background import *
 from pico2d import *
 
+from referee import referee
+
 
 def handle_events():
     events = get_events()
@@ -29,7 +31,8 @@ def init():
     bg = background()
     seat = chair()
     bar =  safe_bar()
-    ball = Ball()
+    myball = Ball()
+    ref = referee(myball)
 
 
     game_world.addobject(bg, 0)
@@ -39,12 +42,14 @@ def init():
     #2번 레이어 에 관중추가
 
     game_world.addobject(bar, 3)
-    game_world.addobject(ball, 3)
+    game_world.addobject(myball, 3)
     game_world.addobject(p1, 3)
     game_world.addobject(p2, 3)
+    game_world.addobject(ref, 1)
 
-    game_world.add_collusion_pair("player1:ball", p1, ball)
-    game_world.add_collusion_pair("player2:ball", p2, ball)
+    game_world.add_collusion_pair("player1:ball", p1, myball)
+    game_world.add_collusion_pair("player2:ball", p2, myball)
+
 
 
 def update():

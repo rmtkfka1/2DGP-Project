@@ -1,3 +1,4 @@
+from ball import Ball
 from player1 import *
 from player2 import *
 from background import *
@@ -13,6 +14,7 @@ def addobject(o,depth=0):
 
 def addobjects(o,depth=0):
     world[depth] += o
+
 
 
 def update():

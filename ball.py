@@ -19,11 +19,11 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 class Ball:
     def __init__(self):
-        self.image =load_image('resource/tennis_ball4.png')
+        self.image =load_image('resource/tennis_ball.png')
         self.fire_image = load_image('resource/fireball.png')
         self.fireshot =False
         # self.x=300
-        self.x =1000
+        self.x =600
         self.y=200
         self.speed=1
         self.frame =0

@@ -48,16 +48,15 @@ def init():
     ##관중 2번 에다가 추가하면됨
     game_world.addobject(bar,3)
 
-
-    game_world.addobject(layer1,3)
-    game_world.addobject(layer2,3)
+    game_world.addobject(layer1,4)
+    game_world.addobject(layer2,4)
 
     game_world.addobject(myui,4)
-    game_world.addobject(ball,2)
+    game_world.addobject(ball,3)
 
     game_world.addobject(p1,3)
     game_world.addobject(p2,3)
-    game_world.addobject(mylogo,3)
+    game_world.addobject(mylogo,4)
 
 
 def update():
