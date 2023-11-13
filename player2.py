@@ -60,12 +60,8 @@ class player2:
     def get_bb(self):
         cur_state = self.state_machine.cur_state
         if cur_state == idle:
-            self.top = self.y +60
-            self.bottom= self.y-90
             return self.x+59.9,self.y-90,self.x+60,self.y+60
         if cur_state == jump:
-            self.top = self.y + 90
-            self.bottom = self.y - 60
             return self.x+59.9, self.y-60, self.x+60, self.y +90
 
     def handle_collusion(self, group, other):

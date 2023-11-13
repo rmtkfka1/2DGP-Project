@@ -35,6 +35,8 @@ class idle:
 
             player.gravity += 1.0 *game_framework.frame_time
 
+        player.top = player.y + 60
+        player.bottom = player.y - 90
 
 
     @staticmethod
@@ -64,6 +66,9 @@ class jump:
 
         if(get_time()- player.wait_time>0.3):
             player.state_machine.handle_event(('TIME_OUT',0))
+
+        player.top = player.y + 90
+        player.bottom = player.y - 60
 
     @staticmethod
     def render(player):

@@ -23,11 +23,16 @@ class Ball:
         self.fire_image = load_image('resource/fireball.png')
         self.fireshot =False
         # self.x=300
-        self.x =600
-        self.y=200
+        self.x =950
+        self.y=300
         self.speed=1
         self.frame =0
         self.going_vector=self.speed * (500, 500)
+        self.top = self.y+20
+        self.bottom =self.y-20
+        self.left =self.x-20
+        self.right =self.x+20
+
         self.gravity = 1 # 중력 값 (원하는 값으로 조정)
 
     def update(self):
@@ -36,27 +41,26 @@ class Ball:
         self.going_vector = self.going_vector[0], self.going_vector[1] - self.gravity
         self.frame = (self.frame +1) % 60
 
+        self.top = self.y+20
+        self.bottom =self.y -20
+        self.left =self.x -20
+        self.right =self.x +20
+
+        self.reflection_wall()
+
+    def reflection_wall(self):
         if self.x > 1200:
-                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
-                self.going_vector = reflection
-
+            reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
+            self.going_vector = reflection
         if self.x < 0:
-                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
-                self.going_vector = reflection
-
-
+            reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
+            self.going_vector = reflection
         if self.y > 700:
-                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
-                self.going_vector = reflection
-
-
-
+            reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
+            self.going_vector = reflection
         if self.y < 100:
-                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
-                self.going_vector = reflection
-                # if(self.going_vector[1] > 380 ):
-                #     self.going_vector = self.going_vector[0],380
-
+            reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
+            self.going_vector = reflection
 
 
     def render(self):
@@ -74,27 +78,32 @@ class Ball:
 
     def handle_collusion(self,group,other):
         if group == "player1:ball":
-            if (self.y > other.top):
-                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
+            if (self.bottom+10> other.top):
+                print("하하하")
+                self.fireshot=False
+                self.speed = 1.0
+                reflection=-self.going_vector[0],self.going_vector[1]
                 self.going_vector = reflection
-                if (self.x < other.left):
+                if (self.left < other.left):
                     self.x -= 10
                     return
 
-                if (self.x >= other.right):
+                if (self.right >= other.right):
                     self.x += 10
                     return
 
-            if (self.y < other.bottom):
+            if (self.top < other.bottom):
+                self.fireshot = False
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
                 self.going_vector = reflection
-                if (self.x < other.left):
+                if (self.left < other.left):
                     self.x -= 10
                     return
 
-                if (self.x >= other.right):
+                if (self.right >= other.right):
                     self.x += 10
                     return
+
 
             if other.top - self.y < 30:
                 print("최상단 맞음")
@@ -115,8 +124,8 @@ class Ball:
             if other.top - self.y < 90:
                 print("기운데 맞음")
                 self.fireshot=True
-                self.speed=1.6
-                reflection = -self.going_vector[0], 300
+                self.speed=1.5
+                reflection = -500, 300
                 self.going_vector = reflection
                 return
 
@@ -131,35 +140,36 @@ class Ball:
             if other.top - self.y < 150:
                 print("최하단 맞음")
                 self.fireshot = False
-                self.speed=1.0
+                self.speed=1.2
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
                 self.going_vector = reflection
                 return
 
 
         if group == "player2:ball":
-
-            if (self.y > other.top):
-                reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
+            if (self.bottom +10> other.top):
+                self.fireshot = False
+                self.speed=1.0
+                reflection = -self.going_vector[0], self.going_vector[1]
                 self.going_vector = reflection
-                if (self.x < other.left):
-                    self.x -= 5
-                    return
+                self.x+=10
+                return
 
-                if (self.x >= other.right):
-                    self.x += 5
-                    return
 
-            if (self.y < other.bottom):
+            if (self.top < other.bottom):
+                self.fireshot = False
+                self.speed = 1.0
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
                 self.going_vector = reflection
-                if (self.x < other.left):
-                    self.x -= 5
+                if (self.left< other.left):
+                    self.x += 10
                     return
 
-                if (self.x >= other.right):
-                    self.x += 5
+                if (self.right >= other.right):
+                    self.x += 10
                     return
+
+
 
             if other.top - self.y < 30:
                 print("최상단 맞음")
@@ -180,8 +190,8 @@ class Ball:
             if other.top - self.y < 90:
                 print("기운데 맞음")
                 self.fireshot = True
-                self.speed = 1.6
-                reflection = -self.going_vector[0],300
+                self.speed = 1.5
+                reflection = 500,300
                 self.going_vector = reflection
                 return
 
@@ -196,7 +206,7 @@ class Ball:
             if other.top - self.y < 150:
                 print("최하단 맞음")
                 self.fireshot = False
-                self.speed = 1.0
+                self.speed = 1.2
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
                 self.going_vector = reflection
                 return
