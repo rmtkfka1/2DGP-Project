@@ -23,11 +23,11 @@ class Ball:
         self.fire_image = load_image('resource/fireball.png')
         self.fireshot =False
         # self.x=300
-        self.x =950
-        self.y=300
+        self.x =750
+        self.y=400
         self.speed=1
         self.frame =0
-        self.going_vector=self.speed * (500, 500)
+        self.going_vector=self.speed * (500, 300)
         self.top = self.y+20
         self.bottom =self.y-20
         self.left =self.x-20
@@ -81,7 +81,7 @@ class Ball:
             if (self.bottom+10> other.top):
                 print("하하하")
                 self.fireshot=False
-                self.speed = 1.0
+                self.speed = 1.2
                 reflection=-self.going_vector[0],self.going_vector[1]
                 self.going_vector = reflection
                 if (self.left < other.left):
@@ -94,6 +94,7 @@ class Ball:
 
             if (self.top < other.bottom):
                 self.fireshot = False
+                self.speed=1.2
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
                 self.going_vector = reflection
                 if (self.left < other.left):
@@ -149,7 +150,7 @@ class Ball:
         if group == "player2:ball":
             if (self.bottom +10> other.top):
                 self.fireshot = False
-                self.speed=1.0
+                self.speed=1.2
                 reflection = -self.going_vector[0], self.going_vector[1]
                 self.going_vector = reflection
                 self.x+=10
@@ -158,7 +159,7 @@ class Ball:
 
             if (self.top < other.bottom):
                 self.fireshot = False
-                self.speed = 1.0
+                self.speed = 1.2
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
                 self.going_vector = reflection
                 if (self.left< other.left):
