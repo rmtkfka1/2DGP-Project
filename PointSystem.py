@@ -52,6 +52,11 @@ class Start:
 class P1Win:
     @staticmethod
     def enter(ps, e):
+        ps.p1.x = 1000
+        ps.p1.y = 120
+
+        ps.p2.x = 200
+        ps.p2.y = 120
 
         if ps.p1.score >= 4:
             ps.winner = 'p1'
@@ -97,6 +102,12 @@ class P1Win:
 class P2Win:
     @staticmethod
     def enter(ps, e):
+
+        ps.p1.x = 1000
+        ps.p1.y = 120
+
+        ps.p2.x = 200
+        ps.p2.y = 120
 
         if ps.p2.score >= 4:
             ps.winner = 'p2'

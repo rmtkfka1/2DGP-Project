@@ -34,9 +34,6 @@ def init():
     global ball
 
     running = True
-
-
-
     layer1 = p1_layer()
     layer2 = p2_layer()
     myui = ui()
@@ -67,17 +64,15 @@ def init():
     game_world.addobject(seat_last, 2)
 
     game_world.addobject(flag, 1)
-
     game_world.addobject(bar, 7)
-    game_world.addobject(myball, 9)
     game_world.addobject(p1, 8)
     game_world.addobject(p2, 8)
     game_world.addobject(ref, 1)
     game_world.addobject(layer1,10)
     game_world.addobject(layer2,10)
 
-    game_world.addobject(myui,4)
-    game_world.addobject(mylogo,4)
+    game_world.addobject(myui,10)
+    game_world.addobject(mylogo,10)
 
 
 def update():
