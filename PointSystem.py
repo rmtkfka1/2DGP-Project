@@ -37,6 +37,15 @@ class Start:
 
     @staticmethod
     def render(ps):
+
+        if get_time()-ps.wait_time >=0 and get_time()-ps.wait_time<1:
+            ps.winfont.draw(550, 100, f'{2}', (255, 255, 0))
+
+        if get_time()-ps.wait_time >= 1 and get_time()-ps.wait_time<2:
+            ps.winfont.draw(550, 100, f'{1}', (255, 255, 0))
+
+
+
         ps.font.draw(480, 200, f'{ps.p2.score}', (255, 255, 255))
         ps.font.draw(700, 200, f'{ps.p1.score}', (255, 255, 255))
 
@@ -75,6 +84,13 @@ class P1Win:
 
     @staticmethod
     def render(ps):
+
+        if get_time()-ps.wait_time >=0 and get_time()-ps.wait_time<1:
+            ps.winfont.draw(550, 100, f'{2}', (255, 255, 0))
+
+        if get_time()-ps.wait_time >= 1 and get_time()-ps.wait_time<2:
+            ps.winfont.draw(550, 100, f'{1}', (255, 255, 0))
+
         ps.font.draw(480, 200, f'{ps.p2.score}', (255, 255, 255))
         ps.font.draw(700, 200, f'{ps.p1.score}', (255, 255, 255))
 
@@ -112,6 +128,13 @@ class P2Win:
 
     @staticmethod
     def render(ps):
+
+        if get_time()-ps.wait_time >=0 and get_time()-ps.wait_time<1:
+            ps.winfont.draw(550, 100, f'{2}', (255, 255, 0))
+
+        if get_time()-ps.wait_time >= 1 and get_time()-ps.wait_time<2:
+            ps.winfont.draw(550, 100, f'{1}', (255, 255, 0))
+
         ps.font.draw(480, 200, f'{ps.p2.score}', (255, 255, 255))
         ps.font.draw(700, 200, f'{ps.p1.score}', (255, 255, 255))
 
