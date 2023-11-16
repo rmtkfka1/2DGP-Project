@@ -46,6 +46,8 @@ def remove_object(o):
     raise ValueError('Cannot delete non existing object')
 
 def clear():
+    collusion_world.clear()
+
     for layer in world:
         layer.clear()
 

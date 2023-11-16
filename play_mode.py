@@ -74,5 +74,6 @@ def resume():
 
 
 def finish():
+
     game_world.clear()
     pass

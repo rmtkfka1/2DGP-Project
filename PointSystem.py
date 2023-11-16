@@ -1,6 +1,9 @@
 from pico2d import get_time, load_font
 
+import game_framework
 import play_mode
+import title_mode
+
 
 def time_out(e):
     return e == 'TIME_OUT'
@@ -41,8 +44,9 @@ class P1Win:
     @staticmethod
     def enter(ps, e):
 
-        # if ps.p2.score >= 1:
-        #     ps.state_machine.handle_event('game_end')
+        if ps.p1.score >= 4:
+            ps.winner = 'p1'
+            ps.state_machine.handle_event('game_end')
 
         ps.wait_time = get_time()  # pico2d import 필요
 
@@ -78,6 +82,11 @@ class P2Win:
     @staticmethod
     def enter(ps, e):
 
+        if ps.p2.score >= 4:
+            ps.winner = 'p2'
+            ps.state_machine.handle_event('game_end')
+
+
 
         ps.wait_time = get_time()  # pico2d import 필요
         ps.ball.x = 300
@@ -111,7 +120,8 @@ class P2Win:
 class GameEnd:
     @staticmethod
     def enter(ps, e):
-        pass
+
+        ps.wait_time = get_time()  # pico2d import 필요
 
     @staticmethod
     def exit(ps, e):
@@ -119,10 +129,17 @@ class GameEnd:
 
     @staticmethod
     def update(ps):
-        pass
+        if get_time() - ps.wait_time > 3:
+            game_framework.change_mode(title_mode)
 
     @staticmethod
     def render(ps):
+
+        if ps.winner == 'p2':
+            ps.winfont.draw(200, 400, f'{"RED WIN"}', (255, 0, 0))
+
+        if ps.winner == 'p1':
+            ps.winfont.draw(150, 400, f'{"BLUE WIN"}', (0, 0, 255))
         ps.font.draw(480, 200, f'{ps.p2.score}', (255, 255, 255))
         ps.font.draw(700, 200, f'{ps.p1.score}', (255, 255, 255))
 
@@ -162,6 +179,7 @@ class PointSystem:
         self.p1=p1
         self.p2=p2
         self.font = load_font('ENCR10B.TTF', 50)
+        self.winfont = load_font('ENCR10B.TTF', 200)
         self.state_machine = ps_state_machine(self)
         self.state_machine.start()
 
