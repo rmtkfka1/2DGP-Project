@@ -17,11 +17,10 @@ class background:
 
 
 class chair:
-    def __init__(self):
-        self.x=520
-        self.y=394
-
-        self.image = load_image('resource/chair.png')
+    def __init__(self,x,y):
+        self.x=x
+        self.y=y
+        self.image = load_image('resource/chair_front.png')
 
     def update(self):
         pass

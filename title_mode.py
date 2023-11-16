@@ -1,11 +1,14 @@
 import game_world
 import play_mode
+from audience import Audience
 from ball import Ball
+from flag import Flag
 from player1 import *
 from player2 import *
 from background import *
 from pico2d import *
 
+from referee import referee
 
 
 def handle_events():
@@ -32,31 +35,48 @@ def init():
 
     running = True
 
-    bg =background()
-    seat = chair()
-    bar =safe_bar()
-    ball=Ball()
-    ball.start=True
+
+
     layer1 = p1_layer()
     layer2 = p2_layer()
     myui = ui()
     mylogo =logo()
-    p1=player1()
-    p2=player2()
 
-    game_world.addobject(bg,0)
-    game_world.addobject(seat,1)
-    ##관중 2번 에다가 추가하면됨
-    game_world.addobject(bar,3)
+    p1 = player1()
+    p2 = player2()
+    bg = background()
+    seat_front = chair(530, 370)
+    seat_middle = chair(550, 420)
+    seat_last = chair(570, 470)
+    bar = safe_bar()
+    myball = Ball()
+    myball.start=True
+    ref = referee(myball)
+    flag = Flag()
+    audience = Audience(myball, 80, 355)
+    audience_middle = Audience(myball, 100, 400)
+    audience_last = Audience(myball, 125, 445)
 
-    game_world.addobject(layer1,4)
-    game_world.addobject(layer2,4)
+
+    game_world.addobject(bg, 0)
+    game_world.addobject(audience, 7)
+    game_world.addobject(seat_front, 6)
+    game_world.addobject(audience_middle, 5)
+    game_world.addobject(seat_middle, 4)
+    game_world.addobject(audience_last, 3)
+    game_world.addobject(seat_last, 2)
+
+    game_world.addobject(flag, 1)
+
+    game_world.addobject(bar, 7)
+    game_world.addobject(myball, 9)
+    game_world.addobject(p1, 8)
+    game_world.addobject(p2, 8)
+    game_world.addobject(ref, 1)
+    game_world.addobject(layer1,10)
+    game_world.addobject(layer2,10)
 
     game_world.addobject(myui,4)
-    game_world.addobject(ball,3)
-
-    game_world.addobject(p1,3)
-    game_world.addobject(p2,3)
     game_world.addobject(mylogo,4)
 
 

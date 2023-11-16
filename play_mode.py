@@ -1,5 +1,6 @@
 import game_world
 from PointSystem import PointSystem
+from audience import Audience
 from ball import Ball
 from flag import Flag
 from player1 import *
@@ -21,34 +22,42 @@ def handle_events():
 
 
 def init():
-    global running
     global p1
     global p2
     global bg
     global myball
     global ps
 
-    running = True
     p1 = player1()
     p2 = player2()
     bg = background()
-    seat = chair()
+    seat_front= chair(530,370)
+    seat_middle = chair(550, 420)
+    seat_last = chair(570, 470)
     bar =  safe_bar()
     myball = Ball()
     ref = referee(myball)
     flag =Flag()
     ps =PointSystem(myball,p1,p2)
+    audience=Audience(myball,80,355)
+    audience_middle=Audience(myball,100,400)
+    audience_last = Audience(myball, 125, 445)
 
-    game_world.addobject(ps,3)
+    game_world.addobject(ps,10)
     game_world.addobject(bg, 0)
-    game_world.addobject(seat, 1)
-    game_world.addobject(flag, 1)
-    #2번 레이어 에 관중추가
+    game_world.addobject(audience, 7)
+    game_world.addobject(seat_front, 6)
+    game_world.addobject(audience_middle, 5)
+    game_world.addobject(seat_middle, 4)
+    game_world.addobject(audience_last, 3)
+    game_world.addobject(seat_last, 2)
 
-    game_world.addobject(bar, 3)
-    game_world.addobject(myball, 3)
-    game_world.addobject(p1, 3)
-    game_world.addobject(p2, 3)
+    game_world.addobject(flag, 1)
+
+    game_world.addobject(bar, 7)
+    game_world.addobject(myball, 9)
+    game_world.addobject(p1, 8)
+    game_world.addobject(p2, 8)
     game_world.addobject(ref, 1)
 
     game_world.add_collusion_pair("player1:ball", p1, myball)
