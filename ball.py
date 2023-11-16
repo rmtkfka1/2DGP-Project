@@ -23,30 +23,31 @@ class Ball:
         self.fire_image = load_image('resource/fireball.png')
         self.fireshot =False
         # self.x=300
-        self.x =750
-        self.y=400
+        self.x =900
+        self.y=200
         self.speed=1
         self.frame =0
-        self.going_vector=self.speed * (500, 300)
+        self.going_vector=self.speed * (-500, 300)
         self.top = self.y+20
         self.bottom =self.y-20
         self.left =self.x-20
         self.right =self.x+20
 
         self.gravity = 1 # 중력 값 (원하는 값으로 조정)
+        self.start =False
 
     def update(self):
-        self.x += self.speed * self.going_vector[0] * game_framework.frame_time
-        self.y += self.speed * self.going_vector[1] * game_framework.frame_time
-        self.going_vector = self.going_vector[0], self.going_vector[1] - self.gravity
-        self.frame = (self.frame +1) % 60
+        if self.start:
+            self.x += self.speed * self.going_vector[0] * game_framework.frame_time
+            self.y += self.speed * self.going_vector[1] * game_framework.frame_time
+            self.going_vector = self.going_vector[0], self.going_vector[1] - self.gravity
+            self.frame = (self.frame +1) % 60
 
-        self.top = self.y+20
-        self.bottom =self.y -20
-        self.left =self.x -20
-        self.right =self.x +20
-
-        self.reflection_wall()
+            self.top = self.y+20
+            self.bottom =self.y -20
+            self.left =self.x -20
+            self.right =self.x +20
+            self.reflection_wall()
 
     def reflection_wall(self):
         if self.x > 1200:

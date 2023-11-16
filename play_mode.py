@@ -1,4 +1,5 @@
 import game_world
+from PointSystem import PointSystem
 from ball import Ball
 from player1 import *
 from player2 import *
@@ -23,7 +24,8 @@ def init():
     global p1
     global p2
     global bg
-    global ball
+    global myball
+    global ps
 
     running = True
     p1 = player1()
@@ -33,11 +35,10 @@ def init():
     bar =  safe_bar()
     myball = Ball()
     ref = referee(myball)
+    ps =PointSystem(myball,p1,p2)
 
-
+    game_world.addobject(ps,0)
     game_world.addobject(bg, 0)
-
-
     game_world.addobject(seat, 1)
     #2번 레이어 에 관중추가
 

@@ -52,6 +52,7 @@ class player1:
         self.image = load_image('resource/p1_img.png')
         self.state_machine = p1_state_machine(self)
         self.state_machine.start()
+        self.score =0
 
     def update(self):
         self.state_machine.update()
