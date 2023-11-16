@@ -37,7 +37,7 @@ def init():
     ref = referee(myball)
     ps =PointSystem(myball,p1,p2)
 
-    game_world.addobject(ps,0)
+    game_world.addobject(ps,3)
     game_world.addobject(bg, 0)
     game_world.addobject(seat, 1)
     #2번 레이어 에 관중추가

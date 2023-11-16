@@ -36,6 +36,7 @@ def init():
     seat = chair()
     bar =safe_bar()
     ball=Ball()
+    ball.start=True
     layer1 = p1_layer()
     layer2 = p2_layer()
     myui = ui()
