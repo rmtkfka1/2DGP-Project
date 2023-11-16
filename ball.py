@@ -50,12 +50,6 @@ class Ball:
             self.reflection_wall()
 
     def reflection_wall(self):
-        if self.x > 1200:
-            reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
-            self.going_vector = reflection
-        if self.x < 0:
-            reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
-            self.going_vector = reflection
         if self.y > 700:
             reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
             self.going_vector = reflection
@@ -85,26 +79,16 @@ class Ball:
                 self.speed = 1.2
                 reflection=-self.going_vector[0],self.going_vector[1]
                 self.going_vector = reflection
-                if (self.left < other.left):
-                    self.x -= 10
-                    return
+                self.x -= 10
 
-                if (self.right >= other.right):
-                    self.x += 10
-                    return
 
             if (self.top < other.bottom):
                 self.fireshot = False
                 self.speed=1.2
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
                 self.going_vector = reflection
-                if (self.left < other.left):
-                    self.x -= 10
-                    return
-
-                if (self.right >= other.right):
-                    self.x += 10
-                    return
+                self.x -= 10
+                return
 
 
             if other.top - self.y < 30:
@@ -163,13 +147,9 @@ class Ball:
                 self.speed = 1.2
                 reflection = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
                 self.going_vector = reflection
-                if (self.left< other.left):
-                    self.x += 10
-                    return
+                self.x += 10
 
-                if (self.right >= other.right):
-                    self.x += 10
-                    return
+
 
 
 

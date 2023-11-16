@@ -1,6 +1,7 @@
 import game_world
 from PointSystem import PointSystem
 from ball import Ball
+from flag import Flag
 from player1 import *
 from player2 import *
 from background import *
@@ -35,11 +36,13 @@ def init():
     bar =  safe_bar()
     myball = Ball()
     ref = referee(myball)
+    flag =Flag()
     ps =PointSystem(myball,p1,p2)
 
     game_world.addobject(ps,3)
     game_world.addobject(bg, 0)
     game_world.addobject(seat, 1)
+    game_world.addobject(flag, 1)
     #2번 레이어 에 관중추가
 
     game_world.addobject(bar, 3)
