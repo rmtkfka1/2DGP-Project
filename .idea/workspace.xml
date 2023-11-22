@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c5d41a2-84b6-4876-aac5-7fc6a2909dd7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/2DGP-Project/tennis/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/PointSystem.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/PointSystem.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/audience.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/audience.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/background.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/background.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/ball.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/flag.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/flag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/game_framework.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/game_framework.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/game_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/game_world.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/tennis_mode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/player1.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/player1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/player2.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/player2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/player_state_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/player_state_machine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/referee.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/referee.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/title_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/title_mode.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project/연습장.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/연습장.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/2DGP-Project" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2YG0XxtbexMlRpWCLKsI4K8tdR0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\pakhe\Desktop\Git\2DGP-Project\2DGP-Project\tennis" />
+      <recent name="C:\Users\pakhe\Desktop\Git\2DGP-Project\balley" />
+      <recent name="C:\Users\pakhe\Desktop\Git\2DGP-Project" />
+      <recent name="C:\Users\pakhe\Desktop\Git\2DGP-Project\tennis" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.main (1)">
+    <configuration name="연습장" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="2DGP-Project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\pakhe\Desktop\Git\2DGP-Project\tennis\연습장.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="audience" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="2DGP-Project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\pakhe\Desktop\Git\2DGP-Project\tennis\audience.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="2DGP-Project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\pakhe\Desktop\Git\2DGP-Project\main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="2DGP-Project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/2DGP-Project" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\pakhe\Desktop\Git\2DGP-Project\2DGP-Project\tennis\main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main (1)" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.연습장" />
+        <item itemvalue="Python.audience" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c5d41a2-84b6-4876-aac5-7fc6a2909dd7" name="Changes" comment="" />
+      <created>1700136652002</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700136652002</updated>
+    </task>
+    <servers />
+  </component>
+</project>
