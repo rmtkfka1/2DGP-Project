@@ -35,6 +35,9 @@ class idle:
 
             player.gravity += 1.0 * game_framework.frame_time
 
+        if(player.y<120):
+            player.y=120
+
         player.top = player.y + 60
         player.bottom = player.y - 90
 
@@ -57,6 +60,7 @@ class jump:
     @staticmethod
     def update(player):
 
+        ##팔위로 올리는거
         if(player.frame < 5):
             player.frame += (ACTION_PER_TIME * 2 * FRAMES_PER_ACTION * game_framework.frame_time)
 

@@ -26,14 +26,18 @@ class idle:
 
     @staticmethod
     def update(player):
+        ##반대로 팔을내려주는거
         if player.frame>0 :
             player.frame -= (ACTION_PER_TIME * FRAMES_PER_ACTION * game_framework.frame_time)
 
 
         if(player.y>120):
             player.y -= RUN_SPEED_PPS * game_framework.frame_time + player.gravity
-
             player.gravity += 1.0 * game_framework.frame_time
+
+        # if(player.y<120):
+        #     player.y=120
+        print(player.y)
 
         player.top = player.y + 60
         player.bottom = player.y - 90
