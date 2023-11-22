@@ -70,20 +70,16 @@ def reflection_vector(x,y,nx,ny):
 def sliding_vector(x,y,nx,ny):
     new_x = x - nx*(x*nx)
     new_y = y - ny*(y*ny)
+
+    new_x, new,y = reflection_vector(new_x,new_y)
     return new_x, new_y
 
 
-def reverse_vector(x,y):
-    return -x,y
-
-
-def normalize_vector(vector):
-        magnitude = math.sqrt(vector[0] ** 2 + vector[1] ** 2)
+def normalize_vector(x,y):
+        magnitude = math.sqrt(x ** 2 + y ** 2)
         if magnitude != 0:
-            normalized_vector = (vector[0] / magnitude, vector[1] / magnitude)
-            return normalized_vector
-        else:
-            return vector
+            normalized_vector = (x / magnitude, y / magnitude)
+            return normalized_vector[0],normalized_vector[1]
 
 
 def add_collusion_pair(group,a,b):
