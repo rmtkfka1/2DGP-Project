@@ -35,37 +35,35 @@ class Ball:
         self.speed_x=700
         self.speed_y=700
         self.gravity =1# 중력 값 (원하는 값으로 조정)
+        self.dir ="up"
+
+
     def update(self):
+        self.frame =(self.frame+1)%60
 
-        self.top = self.y + 20
-        self.bottom = self.y - 20
-        self.left = self.x - 20
-        self.right = self.x + 20
+        if(self.start):
+            self.top = self.y + 20
+            self.bottom = self.y - 20
+            self.left = self.x - 20
+            self.right = self.x + 20
+
+            self.x += self.speed_x*self.going_vector[0]* game_framework.frame_time
+            self.y += self.speed_y*self.going_vector[1]* game_framework.frame_time - self.gravity
+
+            self.gravity+=1.0*game_framework.frame_time
+            self.reflection_wall()
 
 
-        self.x += self.speed_x*self.going_vector[0]* game_framework.frame_time
-        self.y += self.speed_y*self.going_vector[1]* game_framework.frame_time - self.gravity
-
-        self.gravity+=1.0*game_framework.frame_time
-
-        self.collusion_wall()
-
-    def collusion_wall(self):
-        if (self.x < 20):
-            self.x = 20
-            self.gravity = 0
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
-        if (self.x > 1180):
-            self.x = 1180
-            self.gravity = 0
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
+    def reflection_wall(self):
         if (self.y > 680):
             self.y = 680
             self.gravity = 0
+            self.dir='down'
             self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
         if (self.y < 20):
             self.y = 20
             self.gravity = 0
+            self.dir='up'
             self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
 
     def render(self):
@@ -79,6 +77,90 @@ class Ball:
         return self.x-20, self.y-20, self.x +20, self.y +20
 
     def handle_collusion(self,group,other):
-        if(other=='')
-       pass
+        if group == "player1:ball":
+            self.gravity=0
+            if self.top > other.top:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(-10, 15)
+                return
 
+            if other.top - self.top >= 0 and other.top - self.top < 30:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(-15, 15)
+                return
+
+            if other.top - self.top >= 30 and other.top - self.top < 60:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(-25, 15)
+                return
+
+            if other.top - self.top >= 60 and other.top - self.top < 90:
+                self.speed_x=1000
+                self.fireshot = True
+                self.going_vector = game_world.normalize_vector(-50, 20)
+                return
+
+            if other.top - self.top >= 60 and other.top - self.top < 90:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(-25, -15)
+                return
+
+            if other.top - self.top >= 90 and other.top - self.top < 120:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(-15, -15)
+                return
+
+            if self.bottom < other.bottom:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(-10, -15)
+                return
+
+        if group == "player2:ball":
+            self.gravity = 0
+            if self.top > other.top:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(10, 15)
+                return
+
+            if other.top - self.top >= 0 and other.top - self.top < 30:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(15, 15)
+                return
+
+            if other.top - self.top >= 30 and other.top - self.top < 60:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(25, 15)
+                return
+
+            if other.top - self.top >= 60 and other.top - self.top < 90:
+                self.speed_x = 1000
+                self.fireshot = True
+                self.going_vector = game_world.normalize_vector(50, 20)
+                return
+
+            if other.top - self.top >= 60 and other.top - self.top < 90:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(25, -15)
+                return
+
+            if other.top - self.top >= 90 and other.top - self.top < 120:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(15, -15)
+                return
+
+            if self.bottom < other.bottom:
+                self.fireshot = False
+                self.speed_x = 700
+                self.going_vector = game_world.normalize_vector(10, -15)
+                return

@@ -1,6 +1,6 @@
 from pico2d import get_time, load_font
 
-from share import game_framework
+from share import game_framework, game_world
 
 
 def time_out(e):
@@ -61,13 +61,25 @@ class P1Win:
             ps.state_machine.handle_event('game_end')
 
         ps.wait_time = get_time()  # pico2d import 필요
+        ps.ball.fireshot = False
+        # self.x=300
+        ps.ball.x = 900
+        ps.ball.y = 200
+        ps.ball.frame = 0
 
-        ps.ball.x =900
-        ps.ball.y =200
-        ps.ball.fireshot=False
-        ps.ball.speed=1.0
-        ps.ball.going_vector=ps.ball.speed * -500,  ps.ball.speed * 300
-        ps.p1.score +=1
+        ps.ball.top = ps.ball.y + 20
+        ps.ball.bottom = ps.ball.y - 20
+        ps.ball.left = ps.ball.x - 20
+        ps.ball.right = ps.ball.x + 20
+
+        ps.ball.start = False  ##점수시스템에서 필요한변수
+
+        ps.ball.going_vector = (-10, 10)
+        ps.ball.going_vector = game_world.normalize_vector(ps.ball.going_vector[0], ps.ball.going_vector[1])
+        ps.ball.speed_x = 700
+        ps.ball.speed_y = 700
+        ps.ball.gravity = 1  # 중력 값 (원하는 값으로 조정)
+        ps.ball.dir = "up"
 
     @staticmethod
     def exit(ps, e):
@@ -114,12 +126,26 @@ class P2Win:
 
 
         ps.wait_time = get_time()  # pico2d import 필요
+
+        ps.ball.fireshot = False
+        # self.x=300
         ps.ball.x = 300
         ps.ball.y = 200
-        ps.ball.fireshot = False
-        ps.ball.speed = 1.0
-        ps.ball.going_vector = ps.ball.speed * 500, ps.ball.speed * 300
-        ps.p2.score += 1
+        ps.ball.frame = 0
+
+        ps.ball.top =ps.ball.y + 20
+        ps.ball.bottom = ps.ball.y - 20
+        ps.ball.left = ps.ball.x - 20
+        ps.ball.right =ps.ball.x + 20
+
+        ps.ball.start = False  ##점수시스템에서 필요한변수
+
+        ps.ball.going_vector = (10, 10)
+        ps.ball.going_vector = game_world.normalize_vector(   ps.ball.going_vector[0],    ps.ball.going_vector[1])
+        ps.ball.speed_x = 700
+        ps.ball.speed_y = 700
+        ps.ball.gravity = 1  # 중력 값 (원하는 값으로 조정)
+        ps.ball.dir = "up"
 
     @staticmethod
     def exit(ps, e):
