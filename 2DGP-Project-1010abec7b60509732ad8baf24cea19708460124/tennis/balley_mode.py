@@ -1,24 +1,16 @@
-import balley_player1
-import game_world
-import play_mode
-from audience import Audience
-from ball import Ball
-from flag import Flag
-from player1 import *
-from player2 import *
-from background import *
+import tennis.balley_player1
+import tennis.game_world
+# from tennis import game_framework, balley_player1
+from tennis.background import *
 from pico2d import *
-
-from referee import referee
-
-
+from tennis.game_framework import *
 
 def handle_events():
     global mx,my
     events = get_events()
     for event in events:
         if event.key == SDLK_ESCAPE:
-            game_framework.running = False
+            tennis.game_framework.running = False
         elif event.type == SDL_MOUSEMOTION:
             mx, my = event.x, 700 - 1 - event.y
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
@@ -31,7 +23,7 @@ def handle_events():
 def init():
     global p1
     p1= balley_player1.bplayer1()
-    game_world.addobject(p1,1)
+    game_world.addobject(p1, 1)
     bg=background()
     game_world.addobject(bg)
     ###############################

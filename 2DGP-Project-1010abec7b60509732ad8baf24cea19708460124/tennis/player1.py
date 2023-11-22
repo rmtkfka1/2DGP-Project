@@ -1,7 +1,7 @@
 from pico2d import *
 
-import game_framework
-from player_state_machine import idle, jump
+import tennis.game_framework
+from tennis.player_state_machine import idle, jump
 
 
 def spacedown(e):

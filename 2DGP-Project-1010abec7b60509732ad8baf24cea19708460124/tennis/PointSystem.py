@@ -1,8 +1,7 @@
 from pico2d import get_time, load_font
 
-import game_framework
-import play_mode
-import tennis_mode
+import tennis.game_framework
+from tennis import game_framework
 
 
 def time_out(e):
@@ -162,7 +161,7 @@ class GameEnd:
         pass
 
     @staticmethod
-    def update(ps):
+    def update(ps, title_mode=None):
         if get_time() - ps.wait_time > 3:
             game_framework.change_mode(title_mode)
 
@@ -212,8 +211,8 @@ class PointSystem:
         self.ball=ball
         self.p1=p1
         self.p2=p2
-        self.font = load_font('ENCR10B.TTF', 50)
-        self.winfont = load_font('ENCR10B.TTF', 200)
+        self.font = load_font('tennis/ENCR10B.TTF', 50)
+        self.winfont = load_font('tennis/ENCR10B.TTF', 200)
         self.state_machine = ps_state_machine(self)
         self.state_machine.start()
 

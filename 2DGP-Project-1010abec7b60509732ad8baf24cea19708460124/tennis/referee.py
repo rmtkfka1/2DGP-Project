@@ -1,6 +1,6 @@
 from pico2d import load_image
 
-import game_world
+import tennis.game_world
 
 
 class referee:

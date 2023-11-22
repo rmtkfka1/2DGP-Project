@@ -2,7 +2,7 @@ import random
 
 from pico2d import load_image
 
-import game_framework
+import tennis.game_framework
 
 
 class Audience:

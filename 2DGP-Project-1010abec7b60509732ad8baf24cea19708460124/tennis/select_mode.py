@@ -1,19 +1,8 @@
-import balley_mode
-import game_world
-import play_mode
-import tennis_mode
-from audience import Audience
-from ball import Ball
-from flag import Flag
-from player1 import *
-from player2 import *
-from background import *
+from tennis import balley_mode, game_framework, tennis_mode, game_world
+import tennis.tennis_mode
+from tennis.player1 import *
+from tennis.background import *
 from pico2d import *
-
-from referee import referee
-
-
-
 
 
 def handle_events():
@@ -36,7 +25,7 @@ def handle_events():
 
 def init():
     global  font
-    font = load_font('monogram.TTF', 100)
+    font = load_font('tennis/monogram.TTF', 100)
     bg = select_background()
     game_world.addobject(bg, 5)
 

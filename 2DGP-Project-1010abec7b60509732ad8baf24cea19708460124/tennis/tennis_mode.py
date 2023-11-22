@@ -1,14 +1,15 @@
-import game_world
-import play_mode
-from audience import Audience
-from ball import Ball
-from flag import Flag
-from player1 import *
-from player2 import *
-from background import *
+import tennis.game_world
+import tennis.play_mode
+from tennis import game_world, game_framework, play_mode
+from tennis.audience import Audience
+from tennis.ball import Ball
+from tennis.flag import Flag
+from tennis.player1 import *
+from tennis.player2 import *
+from tennis.background import *
 from pico2d import *
 
-from referee import referee
+from tennis.referee import referee
 
 
 

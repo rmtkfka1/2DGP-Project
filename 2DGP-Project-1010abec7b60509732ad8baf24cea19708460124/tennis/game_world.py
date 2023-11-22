@@ -1,7 +1,7 @@
-from ball import Ball
-from player1 import *
-from player2 import *
-from background import *
+from tennis.ball import Ball
+from tennis.player1 import *
+from tennis.player2 import *
+from tennis.background import *
 from pico2d import *
 
 

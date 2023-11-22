@@ -1,6 +1,7 @@
 from pico2d import load_image
 
-import game_framework
+import tennis.game_framework
+from tennis import game_framework
 
 
 class Flag:
@@ -16,7 +17,7 @@ class Flag:
 
 
     def update(self):
-        self.frame= (self.frame+ 10* game_framework.frame_time)%5
+        self.frame= (self.frame + 10 * game_framework.frame_time) % 5
 
 
     def render(self):

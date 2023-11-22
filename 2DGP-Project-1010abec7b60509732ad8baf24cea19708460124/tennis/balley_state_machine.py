@@ -1,6 +1,6 @@
 from pico2d import get_time
 
-import game_framework
+import tennis.game_framework
 
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
@@ -27,13 +27,13 @@ class idle:
     @staticmethod
     def update(player):
         if player.frame>0 :
-            player.frame -= (ACTION_PER_TIME*FRAMES_PER_ACTION * game_framework.frame_time)
+            player.frame -= (ACTION_PER_TIME * FRAMES_PER_ACTION * game_framework.frame_time)
 
 
         if(player.y>120):
-            player.y -= RUN_SPEED_PPS * game_framework.frame_time +  player.gravity
+            player.y -= RUN_SPEED_PPS * game_framework.frame_time + player.gravity
 
-            player.gravity += 1.0 *game_framework.frame_time
+            player.gravity += 1.0 * game_framework.frame_time
 
         player.top = player.y + 60
         player.bottom = player.y - 90
@@ -58,7 +58,7 @@ class jump:
     def update(player):
 
         if(player.frame < 5):
-            player.frame += (ACTION_PER_TIME * 2*FRAMES_PER_ACTION * game_framework.frame_time)
+            player.frame += (ACTION_PER_TIME * 2 * FRAMES_PER_ACTION * game_framework.frame_time)
 
 
         if(player.y <600):

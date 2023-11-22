@@ -1,9 +1,7 @@
-from math import sqrt
-
 from pico2d import *
-import game_framework
-import game_world
-from player_state_machine import idle, jump
+import tennis.game_framework
+import tennis.game_world
+from tennis import game_framework, game_world
 
 TIME_PER_ACTION = 3.0
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION

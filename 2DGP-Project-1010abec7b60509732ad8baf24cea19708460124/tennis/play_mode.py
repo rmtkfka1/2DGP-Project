@@ -1,14 +1,15 @@
-import game_world
-from PointSystem import PointSystem
-from audience import Audience
-from ball import Ball
-from flag import Flag
-from player1 import *
-from player2 import *
-from background import *
+import tennis.game_world
+from tennis import game_world
+from tennis.PointSystem import PointSystem
+from tennis.audience import Audience
+from tennis.ball import Ball
+from tennis.flag import Flag
+from tennis.player1 import *
+from tennis.player2 import *
+from tennis.background import *
 from pico2d import *
 
-from referee import referee
+from tennis.referee import referee
 
 
 def handle_events():
@@ -43,7 +44,7 @@ def init():
     audience_middle=Audience(myball,100,400)
     audience_last = Audience(myball, 125, 445)
 
-    game_world.addobject(ps,10)
+    game_world.addobject(ps, 10)
     game_world.addobject(bg, 0)
     game_world.addobject(audience, 7)
     game_world.addobject(seat_front, 6)

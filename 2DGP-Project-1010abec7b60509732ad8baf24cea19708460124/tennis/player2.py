@@ -1,6 +1,6 @@
 from pico2d import *
 
-from player_state_machine import idle, jump
+from tennis.player_state_machine import idle, jump
 
 
 def keydown_f(e):

@@ -1,6 +1,6 @@
 from pico2d import *
 
-from balley_state_machine import *
+from tennis.balley_state_machine import *
 
 def spacedown(e):
     return e[0] == 'INPUT' and e[1].type == SDL_KEYDOWN and e[1].key == SDLK_UP
@@ -22,7 +22,7 @@ class idle:
 
     @staticmethod
     def update(player):
-        player.frame = ( player.frame +ACTION_PER_TIME*FRAMES_PER_ACTION * game_framework.frame_time)%6
+        player.frame = (player.frame + ACTION_PER_TIME * FRAMES_PER_ACTION * game_framework.frame_time) % 6
 
 
     @staticmethod
@@ -44,7 +44,7 @@ class jump:
     def update(player):
 
         if(player.frame < 5):
-            player.frame += (ACTION_PER_TIME * 2*FRAMES_PER_ACTION * game_framework.frame_time)
+            player.frame += (ACTION_PER_TIME * 2 * FRAMES_PER_ACTION * game_framework.frame_time)
 
 
         if(player.y <600):
