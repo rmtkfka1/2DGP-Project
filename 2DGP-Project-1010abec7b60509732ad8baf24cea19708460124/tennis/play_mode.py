@@ -1,5 +1,4 @@
-import tennis.game_world
-from tennis import game_world
+from share import game_world
 from tennis.PointSystem import PointSystem
 from tennis.audience import Audience
 from tennis.ball import Ball

@@ -1,7 +1,5 @@
 from pico2d import load_image
 
-import tennis.game_world
-
 
 class referee:
     def __init__(self,ball):

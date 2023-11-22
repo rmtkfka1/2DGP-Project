@@ -1,7 +1,6 @@
 from pico2d import get_time, load_font
 
-import tennis.game_framework
-from tennis import game_framework
+from share import game_framework
 
 
 def time_out(e):

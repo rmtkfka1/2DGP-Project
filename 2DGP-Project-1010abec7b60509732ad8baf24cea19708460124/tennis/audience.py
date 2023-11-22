@@ -2,8 +2,6 @@ import random
 
 from pico2d import load_image
 
-import tennis.game_framework
-
 
 class Audience:
     def __init__(self, ball, x, y):

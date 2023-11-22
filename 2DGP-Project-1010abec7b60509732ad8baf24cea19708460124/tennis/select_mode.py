@@ -1,6 +1,6 @@
-from tennis import balley_mode, game_framework, tennis_mode, game_world
-import tennis.tennis_mode
-from tennis.player1 import *
+from tennis import tennis_mode
+from share import game_world, game_framework
+from valleyball import balley_mode
 from tennis.background import *
 from pico2d import *
 

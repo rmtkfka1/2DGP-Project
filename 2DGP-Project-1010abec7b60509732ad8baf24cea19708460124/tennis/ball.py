@@ -1,7 +1,5 @@
 from pico2d import *
-import tennis.game_framework
-import tennis.game_world
-from tennis import game_framework, game_world
+from share import game_world, game_framework
 
 TIME_PER_ACTION = 3.0
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION

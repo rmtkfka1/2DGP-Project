@@ -1,7 +1,6 @@
 from pico2d import load_image
 
-import tennis.game_framework
-from tennis import game_framework
+from share import game_framework
 
 
 class Flag:

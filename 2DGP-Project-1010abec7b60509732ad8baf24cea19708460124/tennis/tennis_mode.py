@@ -1,6 +1,5 @@
-import tennis.game_world
-import tennis.play_mode
-from tennis import game_world, game_framework, play_mode
+from tennis import play_mode
+from share import game_world, game_framework
 from tennis.audience import Audience
 from tennis.ball import Ball
 from tennis.flag import Flag

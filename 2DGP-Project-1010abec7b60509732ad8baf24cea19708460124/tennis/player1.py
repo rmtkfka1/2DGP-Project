@@ -1,6 +1,5 @@
 from pico2d import *
 
-import tennis.game_framework
 from tennis.player_state_machine import idle, jump
 
 
