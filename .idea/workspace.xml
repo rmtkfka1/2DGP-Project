@@ -5,23 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c5d41a2-84b6-4876-aac5-7fc6a2909dd7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/2DGP-Project/tennis/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/PointSystem.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/PointSystem.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/audience.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/audience.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/background.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/background.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/ball.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/flag.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/flag.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/game_framework.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/game_framework.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/game_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/game_world.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/play_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/tennis_mode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/player1.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/player1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/player2.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/player2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/player_state_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/player_state_machine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/referee.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/referee.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/title_mode.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/title_mode.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2DGP-Project/연습장.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project/tennis/연습장.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/2DGP-Project" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -65,7 +50,7 @@
       <recent name="C:\Users\pakhe\Desktop\Git\2DGP-Project\tennis" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.main (1)">
+  <component name="RunManager" selected="Python.audience">
     <configuration name="연습장" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="2DGP-Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -152,7 +137,6 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.main (1)" />
         <item itemvalue="Python.main" />
         <item itemvalue="Python.연습장" />
         <item itemvalue="Python.audience" />
