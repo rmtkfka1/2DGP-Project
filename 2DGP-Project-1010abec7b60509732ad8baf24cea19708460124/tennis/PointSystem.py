@@ -20,6 +20,7 @@ class Start:
     @staticmethod
     def enter(ps, e):
         ps.wait_time = get_time()  # pico2d import 필요
+        ps.stop=True
 
     @staticmethod
     def exit(ps, e):
@@ -27,12 +28,14 @@ class Start:
 
     @staticmethod
     def update(ps):
-        if get_time() - ps.wait_time > 2:
-            ps.ball.start=True
-        if ps.ball.x < 0:
-            ps.state_machine.handle_event('p1_win')
-        if ps.ball.x > 1200:
-            ps.state_machine.handle_event('p2_win')
+        if(ps.stop):
+            if get_time() - ps.wait_time > 2:
+                ps.ball.start=True
+
+            if ps.ball.x < 0:
+                ps.state_machine.handle_event('p1_win')
+            if ps.ball.x > 1200:
+                ps.state_machine.handle_event('p2_win')
 
     @staticmethod
     def render(ps):
@@ -90,13 +93,14 @@ class P1Win:
 
     @staticmethod
     def update(ps):
-        if get_time() - ps.wait_time > 2:
-            ps.ball.start = True
+        if  ps.stop:
+            if get_time() - ps.wait_time > 2:
+                ps.ball.start = True
 
-        if ps.ball.x<0:
-            ps.state_machine.handle_event('p1_win')
-        if ps.ball.x>1200:
-            ps.state_machine.handle_event('p2_win')
+            if ps.ball.x<0:
+                ps.state_machine.handle_event('p1_win')
+            if ps.ball.x>1200:
+                ps.state_machine.handle_event('p2_win')
 
 
     @staticmethod
@@ -156,13 +160,14 @@ class P2Win:
 
     @staticmethod
     def update(ps):
-        if get_time() - ps.wait_time > 2:
-            ps.ball.start = True
+        if ps.stop:
+            if get_time() - ps.wait_time > 2:
+                ps.ball.start = True
 
-        if ps.ball.x < 0:
-            ps.state_machine.handle_event('p1_win')
-        if ps.ball.x > 1200:
-            ps.state_machine.handle_event('p2_win')
+            if ps.ball.x < 0:
+                ps.state_machine.handle_event('p1_win')
+            if ps.ball.x > 1200:
+                ps.state_machine.handle_event('p2_win')
 
     @staticmethod
     def render(ps):

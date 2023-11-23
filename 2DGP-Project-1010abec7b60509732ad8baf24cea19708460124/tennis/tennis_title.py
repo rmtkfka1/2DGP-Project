@@ -14,6 +14,7 @@ from tennis.referee import referee
 
 def handle_events():
     global mx,my
+    global choice
     events = get_events()
     for event in events:
         if event.key == SDLK_ESCAPE:
@@ -25,9 +26,11 @@ def handle_events():
                 game_framework.push_mode(pop)
                 # draw_rectangle(1080, 20, 1130, 90)
             if mx > 340 and mx < 880 and my > 300 and my < 430:
+                game_world.choice='tennis1'
                 game_framework.change_mode(tennis_1player_mode)
 
             if mx > 340 and mx< 880 and my>130 and my<260:
+                game_world.choice = 'tennis2'
                 game_framework.change_mode(tennis_2player_mode)
         else:
             p1.handle_event(event)
@@ -92,7 +95,6 @@ def draw():
     clear_canvas()
 
     game_world.render()
-    draw_rectangle(1080,20,1130,90)
 
     update_canvas()
 

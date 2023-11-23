@@ -9,6 +9,8 @@ world=[[],[],[],[],[],[],[],[],[],[],[]] ##10
 
 collusion_world = {}
 
+choice='tennis1'
+
 def addobject(o,depth=0):
     world[depth].append(o)
 

@@ -12,6 +12,8 @@ from tennis.player_ai import ai
 from tennis.referee import referee
 
 
+myball=None
+
 def handle_events():
     events = get_events()
     for event in events:
