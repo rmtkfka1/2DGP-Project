@@ -29,12 +29,11 @@ def render():
             o.render()
 
 def remove_collusion_object(o):
-    for pairs in collusion_world.value():
+    for pairs in collusion_world.values():
         if o in pairs[0]:
             pairs[0].remove(o)
         if o in pairs[1]:
             pairs[1].remove(o)
-
 
 def remove_object(o):
     for layer in world:

@@ -113,6 +113,7 @@ class state_machine:
     def render(self):
         self.cur_state.render(self.p2)
 
+
     def handle_event(self, e):
         for check_event, next_state in self.table[self.cur_state].items():
             if check_event(e):
@@ -156,7 +157,7 @@ class ai:
 
     def render(self):
         self.state_machine.render()
-        draw_rectangle(*self.get_bb())
+
 
     def get_bb(self):
         cur_state = self.state_machine.cur_state
@@ -168,8 +169,10 @@ class ai:
     def handle_collusion(self, group, other):
         pass
 
-    def test1(self):
-        if self.ball.y>0 and self.ball.y<100:
+    def check(self):
+        if self.ball.start==False:
+            return BehaviorTree.FAIL
+        if self.ball.y - self.y > 5:
             return BehaviorTree.SUCCESS
         else:
             return BehaviorTree.FAIL
@@ -180,7 +183,7 @@ class ai:
         return BehaviorTree.SUCCESS
 
     def build_behavior_tree(self):
-        c1 = Condition("테스트용", self.test1)  ## action 노드생성
+        c1 = Condition("조건 검사", self.check)  ## action 노드생성
         a1 = Action("점프상태",self.change_state,jump)
         SEQ_wander = Sequence("점프상태로만듬", c1, a1)
         self.bt =BehaviorTree(SEQ_wander)

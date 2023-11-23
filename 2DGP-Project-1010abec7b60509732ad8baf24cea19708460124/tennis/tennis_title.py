@@ -1,5 +1,5 @@
 from tennis import tennis_2player_mode, tennis_1player_mode
-from share import game_world, game_framework
+from share import game_world, game_framework, pop
 from tennis.audience import Audience
 from tennis.ball import Ball
 from tennis.flag import Flag
@@ -21,6 +21,9 @@ def handle_events():
         elif event.type == SDL_MOUSEMOTION:
             mx, my = event.x, 700 - 1 - event.y
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
+            if mx>1080 and mx<1130 and my>20 and my<90:
+                game_framework.push_mode(pop)
+                # draw_rectangle(1080, 20, 1130, 90)
             if mx > 340 and mx < 880 and my > 300 and my < 430:
                 game_framework.change_mode(tennis_1player_mode)
 
@@ -87,10 +90,12 @@ def update():
 
 def draw():
     clear_canvas()
+
     game_world.render()
-    # draw_rectangle(340,300,880,430)
-    # draw_rectangle(340,130,880,260)
+    draw_rectangle(1080,20,1130,90)
+
     update_canvas()
+
 
 
 
