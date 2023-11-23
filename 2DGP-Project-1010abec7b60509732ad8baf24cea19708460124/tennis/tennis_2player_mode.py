@@ -8,6 +8,7 @@ from tennis.player2 import *
 from tennis.background import *
 from pico2d import *
 
+from tennis.player_ai import ai
 from tennis.referee import referee
 
 

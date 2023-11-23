@@ -1,5 +1,5 @@
-from tennis import tennis_2player_mode, tennis_1player_mode
 from share import game_world, game_framework
+from tennis.PointSystem import PointSystem
 from tennis.audience import Audience
 from tennis.ball import Ball
 from tennis.flag import Flag
@@ -8,56 +8,43 @@ from tennis.player2 import *
 from tennis.background import *
 from pico2d import *
 
+from tennis.player_ai import ai
 from tennis.referee import referee
 
 
-
 def handle_events():
-    global mx,my
     events = get_events()
     for event in events:
         if event.key == SDLK_ESCAPE:
             game_framework.running = False
-        elif event.type == SDL_MOUSEMOTION:
-            mx, my = event.x, 700 - 1 - event.y
-        elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
-            if mx > 340 and mx < 880 and my > 300 and my < 430:
-                game_framework.change_mode(tennis_1player_mode)
-
-            if mx > 340 and mx< 880 and my>130 and my<260:
-                game_framework.change_mode(tennis_2player_mode)
         else:
             p1.handle_event(event)
             p2.handle_event(event)
 
 
 def init():
-    global running
     global p1
     global p2
-    global ball
+    global bg
+    global myball
+    global ps
 
-    running = True
-    layer1 = p1_layer()
-    layer2 = p2_layer()
-    myui = ui()
-
-
+    myball = Ball()
     p1 = player1()
-    p2 = player2()
+    p2 = ai(myball)
     bg = background()
-    seat_front = chair(530, 370)
+    seat_front= chair(530,370)
     seat_middle = chair(550, 420)
     seat_last = chair(570, 470)
-    bar = safe_bar()
-    myball = Ball()
-    myball.start = True
+    bar =  safe_bar()
     ref = referee(myball)
-    flag = Flag()
-    audience = Audience(myball, 80, 355)
-    audience_middle = Audience(myball, 100, 400)
+    flag =Flag()
+    ps =PointSystem(myball,p1,p2)
+    audience=Audience(myball,80,355)
+    audience_middle=Audience(myball,100,400)
     audience_last = Audience(myball, 125, 445)
 
+    game_world.addobject(ps, 10)
     game_world.addobject(bg, 0)
     game_world.addobject(audience, 7)
     game_world.addobject(seat_front, 6)
@@ -67,39 +54,37 @@ def init():
     game_world.addobject(seat_last, 2)
 
     game_world.addobject(flag, 1)
+
     game_world.addobject(bar, 7)
+    game_world.addobject(myball, 9)
     game_world.addobject(p1, 8)
     game_world.addobject(p2, 8)
     game_world.addobject(ref, 1)
-    game_world.addobject(layer1, 10)
-    game_world.addobject(layer2, 10)
 
-    game_world.addobject(myui, 10)
-
-
-        ###############################
+    game_world.add_collusion_pair("player1:ball", p1, myball)
+    game_world.add_collusion_pair("player2:ball", p2, myball)
 
 
 
 def update():
     game_world.update()
 
+    game_world.handle_collusions()
+
 
 def draw():
     clear_canvas()
     game_world.render()
-    # draw_rectangle(340,300,880,430)
-    # draw_rectangle(340,130,880,260)
     update_canvas()
-
-
 
 
 def pause():
     pass
 
+
 def resume():
     pass
+
 
 def finish():
     game_world.clear()

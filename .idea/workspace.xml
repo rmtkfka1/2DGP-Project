@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9c5d41a2-84b6-4876-aac5-7fc6a2909dd7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project-1010abec7b60509732ad8baf24cea19708460124/tennis/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project-1010abec7b60509732ad8baf24cea19708460124/tennis/ball.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project-1010abec7b60509732ad8baf24cea19708460124/tennis/player_ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project-1010abec7b60509732ad8baf24cea19708460124/tennis/player_ai.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project-1010abec7b60509732ad8baf24cea19708460124/tennis/tennis_title.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP-Project-1010abec7b60509732ad8baf24cea19708460124/tennis/tennis_title.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP-Project-1010abec7b60509732ad8baf24cea19708460124/tennis/연습장.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -163,4 +163,3 @@ class Ball:
                 self.fireshot = False
                 self.speed_x = 700
                 self.going_vector = game_world.normalize_vector(10, -15)
-                ret
