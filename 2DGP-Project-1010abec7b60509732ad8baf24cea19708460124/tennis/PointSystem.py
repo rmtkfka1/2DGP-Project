@@ -1,6 +1,7 @@
 from pico2d import get_time, load_font
 
 from share import game_framework, game_world
+from tennis import select_mode
 
 
 def time_out(e):
@@ -55,6 +56,7 @@ class P1Win:
 
         ps.p2.x = 200
         ps.p2.y = 120
+        ps.p1.score+=1
 
         if ps.p1.score >= 4:
             ps.winner = 'p1'
@@ -118,6 +120,7 @@ class P2Win:
 
         ps.p2.x = 200
         ps.p2.y = 120
+        ps.p2.score+=1
 
         if ps.p2.score >= 4:
             ps.winner = 'p2'
@@ -188,7 +191,7 @@ class GameEnd:
     @staticmethod
     def update(ps, title_mode=None):
         if get_time() - ps.wait_time > 3:
-            game_framework.change_mode(title_mode)
+            game_framework.change_mode(select_mode)
 
     @staticmethod
     def render(ps):

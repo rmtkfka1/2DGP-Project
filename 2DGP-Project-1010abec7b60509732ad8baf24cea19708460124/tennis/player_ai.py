@@ -144,6 +144,7 @@ class ai:
         self.build_behavior_tree()  # bt 설정을 위한 메서드 호출
         self.state_machine.start()
         self.wait_time = 0  # Initialize wait_time attribute
+        self.count=0
 
 
     def update(self):
