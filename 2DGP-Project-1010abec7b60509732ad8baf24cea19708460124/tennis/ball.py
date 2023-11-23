@@ -50,7 +50,7 @@ class Ball:
             self.x += self.speed_x*self.going_vector[0]* game_framework.frame_time
             self.y += self.speed_y*self.going_vector[1]* game_framework.frame_time - self.gravity
 
-            self.gravity+=1.5*game_framework.frame_time
+            self.gravity+=1.0*game_framework.frame_time
             self.reflection_wall()
 
 
@@ -163,4 +163,4 @@ class Ball:
                 self.fireshot = False
                 self.speed_x = 700
                 self.going_vector = game_world.normalize_vector(10, -15)
-                return
+                ret

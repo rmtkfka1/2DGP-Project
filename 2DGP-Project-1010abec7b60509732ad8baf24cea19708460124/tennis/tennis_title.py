@@ -1,4 +1,4 @@
-from tennis import play_mode
+from tennis import tennis_2player_mode
 from share import game_world, game_framework
 from tennis.audience import Audience
 from tennis.ball import Ball
@@ -21,8 +21,11 @@ def handle_events():
         elif event.type == SDL_MOUSEMOTION:
             mx, my = event.x, 700 - 1 - event.y
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
+            if mx > 340 and mx < 880 and my > 300 and my < 430:
+                game_framework.change_mode(tennis_2player_mode)
+
             if mx > 340 and mx< 880 and my>130 and my<260:
-                game_framework.change_mode(play_mode)
+                game_framework.change_mode(tennis_2player_mode)
         else:
             p1.handle_event(event)
             p2.handle_event(event)
