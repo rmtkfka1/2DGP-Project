@@ -32,8 +32,8 @@ class Ball:
         self.dir ='None'
         self.going_vector= (-10,10)
         self.going_vector= game_world.normalize_vector(self.going_vector[0],self.going_vector[1])
-        self.speed_x=800
-        self.speed_y=400
+        self.speed_x=700
+        self.speed_y=700
         self.gravity =1# 중력 값 (원하는 값으로 조정)
 
 
@@ -47,10 +47,10 @@ class Ball:
             self.right = self.x + 20
 
             self.x += self.speed_x*self.going_vector[0]* game_framework.frame_time
-            self.y += self.speed_y*self.going_vector[1]* game_framework.frame_time - self.gravity * game_framework.frame_time
-            self.gravity+=200.0*game_framework.frame_time
+            self.y += self.speed_y*(self.going_vector[1])* game_framework.frame_time-self.gravity*game_framework.frame_time
+            self.gravity+=400.0*game_framework.frame_time
 
-            if self.going_vector[1] > 0:
+            if (self.speed_y*(self.going_vector[1])* game_framework.frame_time-self.gravity*game_framework.frame_time) > 0:
                 self.dir = 'up'
             else:
                 self.dir = 'down'
@@ -61,31 +61,45 @@ class Ball:
     def reflection_wall(self):
         if (self.y > 680):
             self.y = 680
-            self.gravity = 0
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
-
-        if (self.x < 20):
-            self.x = 20
-            self.gravity = 0
-            self.going_vector = game_world.normalize_vector(30, -15)
-
-
-
-        if (self.x > 1180):
-            self.x = 1180
-            self.gravity = 0
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
+            self.gravity = -200
+            self.speed_x = 500
+            self.speed_y = 700
+            self.going_vector =game_world.reflection_vector(self.going_vector[0],self.going_vector[1],0,-1)
 
         if (self.y < 60):
             self.y = 60
             self.gravity =0
+            self.speed_x = 500
+            self.speed_y = 700
             self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
 
+        if (self.x < 20):
+            self.x = 20
+            self.gravity = 0
+            if self.dir =='up':
+                self.speed_x = 500
+                self.speed_y = 700
+                self.going_vector = game_world.normalize_vector(10,10)
+            else:
+                self.speed_x = 500
+                self.speed_y = 700
+                self.going_vector = game_world.normalize_vector(10, -10)
+
+        if (self.x > 1180):
+            self.x = 1180
+            self.gravity = 0
+            if self.dir == 'up':
+                self.speed_x = 500
+                self.speed_y = 700
+                self.going_vector = game_world.normalize_vector(-10, 10)
+            else:
+                self.speed_x = 500
+                self.speed_y = 700
+                self.going_vector = game_world.normalize_vector(-10, -10)
+
+
     def render(self):
-        if self.fireshot:
-            self.fire_image.clip_draw(self.frame*101,0,101,293,self.x,self.y+101)
-        else:
-            self.image.draw(self.x, self.y)
+        self.image.draw(self.x, self.y)
         draw_rectangle(*self.get_bb())
 
     def get_bb(self):
@@ -97,12 +111,80 @@ class Ball:
 
             if other.cur_state == 'smash':
                 if(self.x > other.x):
-                    self.going_vector = game_world.normalize_vector(30, -15)
+                    self.speed_x = 700
+                    self.speed_y = 700
+                    self.going_vector = game_world.normalize_vector(50, -15)
+                    return
+
+            if other.cur_state =='jump':
+                if (self.x < other.x):
+                    self.speed_x = 500
+                    self.speed_y = 700
+                    self.going_vector = game_world.normalize_vector(-20, 20)
+                    return
+
+                else:
+                    self.speed_x=500
+                    self.speed_y=700
+                    self.going_vector = game_world.normalize_vector(5, 2)
+                    return
+
+            if other.cur_state == 'reception':
+                    self.speed_x = 100
+                    self.speed_y = 600
+                    self.going_vector = game_world.normalize_vector(10, 20)
+                    return
 
             else:
                 if (self.x < other.x):
-                    self.going_vector = game_world.normalize_vector(-20, 15)
+                    self.speed_x = 700
+                    self.speed_y = 700
+                    self.going_vector = game_world.normalize_vector(-5, 5)
+                    return
 
                 else:
-                    self.going_vector = game_world.normalize_vector(40, 15)
+                    self.speed_x = 500
+                    self.speed_y = 700
+                    self.going_vector = game_world.normalize_vector(5, 5)
+                    return
 
+        if group == "ai:ball":
+            self.gravity = 0
+            if other.cur_state == 'smash':
+                if (self.x > other.x):
+                    self.speed_x = 500
+                    self.speed_y = 700
+                    self.going_vector = game_world.normalize_vector(-50, -15)
+                    return
+
+            if other.cur_state == 'jump':
+                if (self.x < other.x):
+                    self.speed_x = 500
+                    self.speed_y = 700
+                    self.going_vector = game_world.normalize_vector(20, 20)
+                    return
+
+                else:
+                    self.speed_x = 500
+                    self.speed_y = 700
+                    self.going_vector = game_world.normalize_vector(-5, 2)
+                    return
+
+            if other.cur_state == 'reception':
+                self.speed_x = 100
+                self.speed_y = 600
+                self.going_vector = game_world.normalize_vector(-10, 20)
+                return
+
+            else:
+                if (self.x < other.x):
+                    self.speed_x = 500
+                    self.speed_y = 700
+                    self.going_vector = game_world.normalize_vector(5, 5)
+                    return
+
+                else:
+                    self.speed_x = 500
+                    self.speed_y = 700
+                    self.going_vector = game_world.normalize_vector(-5, 5)
+                    return

@@ -40,6 +40,7 @@ def init():
 
     game_world.add_collusion_pair("player1:ball", p1, ball)
     game_world.add_collusion_pair("net:ball", net, ball)
+    game_world.add_collusion_pair("ai:ball", ai, ball)
 def update():
     game_world.update()
     game_world.handle_collusions()

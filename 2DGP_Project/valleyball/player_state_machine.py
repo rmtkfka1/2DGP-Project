@@ -61,6 +61,7 @@ class jump:
     def enter(player, e):
         player.down=False
         player.cur_state ='jump'
+        player.dir='right'
         player.frame = 0
         pass
 

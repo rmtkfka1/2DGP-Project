@@ -1,8 +1,8 @@
 from pico2d import *
 
 from share import game_framework
-from tennis import tennis_2player_mode
-from tennis.behavior_tree import BehaviorTree, Action, Sequence, Condition, Selector
+from tennis.behavior_tree import BehaviorTree, Action, Condition, Selector ,Sequence
+from valleyball import balley_mode
 
 
 def time_out(e):
@@ -40,7 +40,6 @@ class idle:
         player.cur_state ='idle'
         player.frame = 0
         pass
-
 
     @staticmethod
     def exit(player, e):
@@ -104,6 +103,7 @@ class run_right:
     @staticmethod
     def enter(player, e):
         player.dir = 'right'
+        player.cur_state = 'run_right'
         player.frame = 0
 
     @staticmethod
@@ -151,9 +151,12 @@ class smash:
     def enter(player, e):
         player.frame=0
         player.cur_state = 'smash'
+        player.dist =0
     @staticmethod
     def exit(player, e):
         player.dir='left'
+        player.frame = 0
+        player.dist =0
 
     @staticmethod
     def update(player):
@@ -179,6 +182,7 @@ class smash:
     def render(player):
         player.smash_right_image.clip_draw(int(player.frame) * 64, 0, 64, 93, player.x, player.y)
         pass
+
 class slide_right:
     @staticmethod
     def enter(player, e):
@@ -188,6 +192,9 @@ class slide_right:
         player.dist =0
     @staticmethod
     def exit(player, e):
+        player.frame = 0
+        player.dist =0
+        player.cur_state = 'idle'
         player.dir='right'
         pass
 
@@ -195,10 +202,11 @@ class slide_right:
     def update(player):
         player.frame = (player.frame + FRAMES_PER_SLIDE * ACTION_PER_SLIDE * game_framework.frame_time) % 15
 
-        if (player.x < 600 and player.x >590):
+
+        if (player.x < 1200 and player.x >1170):
             player.state_machine.handle_event(('TIME_OUT', 0))
 
-        if (player.x < 600):
+        if (player.x < 1200):
             player.x += player.slide_speed * game_framework.frame_time
             player.dist += 20* game_framework.frame_time
 
@@ -207,11 +215,12 @@ class slide_right:
 
 
         player.bt.run()
-
     @staticmethod
     def render(player):
         player.slide_right_image.clip_draw(int(player.frame) * 64, 0, 64, 93, player.x, player.y)
         pass
+
+
 
 class slide_left:
     @staticmethod
@@ -222,6 +231,7 @@ class slide_left:
         player.dist =0
     @staticmethod
     def exit(player, e):
+        player.cur_state = 'idle'
         player.dir='left'
         pass
 
@@ -229,10 +239,10 @@ class slide_left:
     def update(player):
         player.frame = (player.frame - FRAMES_PER_SLIDE * ACTION_PER_SLIDE * game_framework.frame_time) % 15
 
-        if (player.x < 10 and player.x >0):
+        if (player.x < 640 and player.x > 610):
             player.state_machine.handle_event(('TIME_OUT', 0))
 
-        if (player.x > 0):
+        if (player.x > 600):
             player.x -= player.slide_speed * game_framework.frame_time
             player.dist += 20* game_framework.frame_time
 
@@ -333,17 +343,21 @@ class ai:
         self.run_speed = 300
         self.jump_speed = 500
         self.slide_speed = 400
+        self.dist=0
+
+        self.count=0
+        self.check_center=False
 
         self.state_machine = state_machine(self)
         self.bt = None  # bt 속성 초기화
         self.build_behavior_tree()  # bt 설정을 위한 메서드 호출
         self.state_machine.start()
-        self.count=0
 
 
 
     def update(self):
         self.state_machine.update()
+        print(self.cur_state)
 
 
     def handle_event(self,event):
@@ -351,45 +365,105 @@ class ai:
 
     def render(self):
         self.state_machine.render()
+        draw_rectangle(0,200,100,230)
 
 
     def get_bb(self):
-        cur_state = self.state_machine.cur_state
-        if cur_state == idle:
-            return self.x+55,self.y-90,self.x+60,self.y+60
-        if cur_state == jump:
-            return self.x+55, self.y-60, self.x+60, self.y +90
+        return self.x - 20, self.y - 60, self.x + 20, self.y + 50
 
     def handle_collusion(self, group, other):
         pass
 
-    def left_check(self):
-        if self.ball.start==False:
+
+    def ball_left_side(self):
+        if self.ball.x <600:
+            self.dir='left'
+            return BehaviorTree.SUCCESS
+        return BehaviorTree.FAIL
+
+    def check_left_run(self):
+        if self.ball.x < self.x:
+            return BehaviorTree.SUCCESS
+        return BehaviorTree.FAIL
+
+    def check_left_slide(self):
+        if self.ball.y <400 and self.ball.x < self.x and abs(self.x-self.ball.x)>40:
+            return BehaviorTree.SUCCESS
+        return BehaviorTree.FAIL
+
+    def check_right_slide(self):
+        if self.ball.y <400 and self.ball.x > self.x and abs(self.x-self.ball.x)>40:
+            return BehaviorTree.SUCCESS
+        return BehaviorTree.FAIL
+
+    def change_state(self, new_state):
+        self.state_machine.cur_state = new_state
+        return BehaviorTree.SUCCESS
+
+    def check_can_move(self):
+        if self.cur_state=="slide_left" or self.cur_state=="slide_right" or self.cur_state=="jump" or self.cur_state=="reception" or  self.cur_state=="smash":
+            return BehaviorTree.FAIL
+        else:
+            return BehaviorTree.SUCCESS
+
+    def left_side(self):
+        if(self.ball.x<600):
+            self.check_center=True
+            return BehaviorTree.SUCCESS
+        else:
             return BehaviorTree.FAIL
 
-        if self.ball.x < self.x:
+    def run_to_middle(self):
+        if(self.x <900):
+            self.x += self.run_speed * game_framework.frame_time
+
+        if (self.x > 900):
+            self.x -= self.run_speed * game_framework.frame_time
+
+        if(self.x>880 and self.x<900):
             return BehaviorTree.SUCCESS
         else:
             return BehaviorTree.FAIL
 
 
-    def change_state(self,new_state):
-        self.state_machine.cur_state = new_state
-        return BehaviorTree.SUCCESS
 
 
     def build_behavior_tree(self):
-        c1 = Condition("공이 자신보다 왼쪽에 있는가?", self.left_check)  ## action 노드생성
-        a1 = Action("run_left 상태 변경", self.change_state, run_left)
-        a2 = Action("idle 상태 변경", self.change_state, idle)
-        a3 = Action("run_right 상태 변경", self.change_state, run_right)
+        c9 = Condition("무엇을 해도되는가 ?", self.check_can_move)
 
-        SEQ_RUN_LEFT = Sequence("왼쪽으로 이동", c1, a1)
-        SEQ_RUN_Right = Sequence("오른쪽으로 이동", a3)
-        SEQ_IDLE = Sequence("아이들 상태로 변경",a2)
 
-        SEQ_TEST = Selector("핼로" ,SEQ_RUN_LEFT,SEQ_RUN_Right,SEQ_IDLE)
-        self.bt = BehaviorTree(SEQ_TEST)
+        c1 = Condition("공이 상대편진영에 있는가?", self.ball_left_side)
+        a1 = Action("아이들 상태로 만듬", self.change_state, idle)
+        SEQ_IDLE_STATE = Sequence("아이들",c1,a1)
+
+        c2 =Condition("공이 자신보다 왼쪽?", self.check_left_run)
+        a2 =Action("왼쪽으로 달림",self.change_state,run_left)
+        SEQ_LEFT_RUN_STATE =Sequence("왼쪽으로 달림",c2,c9,a2)
+
+
+        a3 = Action("오른쪽 으로 달림", self.change_state, run_right)
+        SEQ_RIGHT_RUN_STATE = Sequence("오른쪽 으로 달림",c9, a3)
+
+        c4 = Condition("왼쪽 슬라이딩을 해야하는가?", self.check_left_slide)
+        a4 = Action("왼쪽 슬라이딩 으로 상태변경", self.change_state,slide_left)
+        SEQ_LEFT_SLIDE = Sequence("왼쪽으로 슬라이딩 해버리기",c9,c4,a4)
+
+        c5 = Condition("오른쪽 슬라이딩을 해야하는가?", self.check_right_slide)
+        a5 = Action("오른쪽 슬라이딩 으로 상태변경", self.change_state, slide_right)
+        SEQ_RIGHT_SLIDE = Sequence("왼쪽으로 슬라이딩 해버리기",c9,c5,a5)
+
+        c6 = Condition("공이 왼쪽 편?",self.left_side)
+        a6 = Action("센터로 이동",self.run_to_middle)
+        SEQ_MOVE_TO_CENTER= Sequence("가운데", c6,a6)
+
+
+
+
+
+        root = Selector("테스트용", SEQ_MOVE_TO_CENTER,SEQ_IDLE_STATE,SEQ_LEFT_SLIDE,SEQ_RIGHT_SLIDE,SEQ_LEFT_RUN_STATE,SEQ_RIGHT_RUN_STATE)
+
+        self.bt = BehaviorTree(root)
+
 
 
 

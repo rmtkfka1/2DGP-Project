@@ -1,8 +1,6 @@
 from pico2d import *
 
-from tennis import tennis_2player_mode
-from tennis.behavior_tree import BehaviorTree, Action, Sequence, Condition, Selector
-
+from tennis.behavior_tree import BehaviorTree, Action, Sequence, Condition
 
 
 def keydown_f(e):

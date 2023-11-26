@@ -31,10 +31,21 @@ class net:
     def handle_collusion(self, group, other):
         if group == "net:ball":
             if self.x < other.x:
-                other.going_vector= game_world.normalize_vector(10, -10)
+                other.speed_x = 700
+                other.speed_y = 700
+
+                if(other.dir =='up'):
+                    other.going_vector= game_world.normalize_vector(10,-10)
+                else:
+                    other.going_vector = game_world.normalize_vector(10, 10)
 
             if self.x > other.x:
-                other.going_vector = game_world.normalize_vector(-10, -10)
+                other.speed_x = 700
+                other.speed_y = 700
+                if (other.dir == 'up'):
+                    other.going_vector = game_world.normalize_vector(-10, -10)
+                else:
+                    other.going_vector = game_world.normalize_vector(-10, 10)
 
 
 
