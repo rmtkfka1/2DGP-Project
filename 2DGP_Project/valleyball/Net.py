@@ -30,6 +30,8 @@ class net:
 
     def handle_collusion(self, group, other):
         if group == "net:ball":
+
+
             if self.x < other.x:
                 other.speed_x = 700
                 other.speed_y = 700

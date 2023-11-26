@@ -93,8 +93,10 @@ class player1:
         self.run_speed=300
         self.jump_speed=500
         self.slide_speed=400
+        self.counting=0
         self.state_machine = p1_state_machine(self)
         self.state_machine.start()
+
 
 
 

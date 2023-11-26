@@ -357,7 +357,6 @@ class ai:
 
     def update(self):
         self.state_machine.update()
-        print(self.cur_state)
 
 
     def handle_event(self,event):

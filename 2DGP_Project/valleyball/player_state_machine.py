@@ -90,7 +90,6 @@ class jump:
 
 
 
-        pass
     @staticmethod
     def render(player):
         if player.dir == 'left':
