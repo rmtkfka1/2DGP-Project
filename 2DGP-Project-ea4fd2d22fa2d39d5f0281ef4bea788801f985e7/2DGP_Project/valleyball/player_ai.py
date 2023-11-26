@@ -50,8 +50,7 @@ class idle:
     def update(player):
         player.frame = (player.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 12
 
-
-
+        player.bt.run()
     @staticmethod
     def render(player):
         if player.dir =='left':
@@ -92,9 +91,7 @@ class jump:
         if player.y<120:
             player.state_machine.handle_event(('TIME_OUT',0))
 
-
-
-        pass
+        player.bt.run()
     @staticmethod
     def render(player):
         if player.dir == 'left':
@@ -116,9 +113,9 @@ class run_right:
     @staticmethod
     def update(player):
         player.frame = (player.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 12
-        if (player.x <600):
+        if (player.x < 1200):
             player.x += player.run_speed * game_framework.frame_time
-
+        player.bt.run()
     @staticmethod
     def render(player):
         player.run_right_image.clip_draw(int(player.frame) * 64, 0, 64, 86, player.x, player.y)
@@ -138,9 +135,10 @@ class run_left:
     @staticmethod
     def update(player):
         player.frame = (player.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 12
-        if (player.x >0):
+        if (player.x >650):
             player.x -= player.run_speed * game_framework.frame_time
 
+        player.bt.run()
 
     @staticmethod
     def render(player):
@@ -155,7 +153,7 @@ class smash:
         player.cur_state = 'smash'
     @staticmethod
     def exit(player, e):
-        player.dir='right'
+        player.dir='left'
 
     @staticmethod
     def update(player):
@@ -175,11 +173,12 @@ class smash:
         if player.y < 120:
             player.state_machine.handle_event(('TIME_OUT', 0))
 
+        player.bt.run()
+
     @staticmethod
     def render(player):
         player.smash_right_image.clip_draw(int(player.frame) * 64, 0, 64, 93, player.x, player.y)
         pass
-
 class slide_right:
     @staticmethod
     def enter(player, e):
@@ -206,6 +205,8 @@ class slide_right:
         if player.dist >20:
             player.state_machine.handle_event(('TIME_OUT', 0))
 
+
+        player.bt.run()
 
     @staticmethod
     def render(player):
@@ -238,7 +239,7 @@ class slide_left:
         if player.dist >20:
             player.state_machine.handle_event(('TIME_OUT', 0))
 
-
+        player.bt.run()
     @staticmethod
     def render(player):
         player.slide_left_image.clip_draw(int(player.frame) * 64, 0, 64, 93, player.x, player.y)
@@ -265,6 +266,7 @@ class reception:
         if (get_time() - player.wait_time > 1.0):
             player.state_machine.handle_event(('TIME_OUT', 0))
 
+        player.bt.run()
 
     @staticmethod
     def render(player):
@@ -279,8 +281,15 @@ class state_machine:
         self.p2=p2
         self.cur_state=self.p2.cur_state
         self.table={
-            idle: {time_out :jump},
+            idle: {time_out: idle},
             jump: {time_out: idle},
+            run_right: {time_out: idle},
+            run_left: {time_out: idle},
+            smash: {time_out: idle},
+            slide_right: {time_out: idle},
+            slide_left: {time_out: idle},
+            reception: {time_out: idle}
+
         }
 
     def start(self):
@@ -309,8 +318,8 @@ class ai:
         self.frame = 0
         self.idle_left_image = load_image('resource/balley/ai_idle_left.png')
         self.idle_right_image = load_image('resource/balley/ai_idle_right.png')
-        self.run_right_image = load_image('resource/balley/ai_idle_run.png')
-        self.run_left_image = load_image('resource/balley/ai_right_run.png')
+        self.run_right_image = load_image('resource/balley/ai_right_run.png')
+        self.run_left_image = load_image('resource/balley/ai_left_run.png')
         self.smash_right_image = load_image('resource/balley/ai_smash.png')
         self.slide_right_image = load_image('resource/balley/ai_slide_right.png')
         self.slide_left_image = load_image('resource/balley/ai_left_slide.png')
@@ -318,12 +327,15 @@ class ai:
         self.cur_state = idle
         self.dir = 'left'
         self.score = 0
+        self.down = False
+        self.ball=ball
 
-        self.run_speed = 200
+        self.run_speed = 300
         self.jump_speed = 500
-        self.slide_speed = 300
+        self.slide_speed = 400
 
         self.state_machine = state_machine(self)
+        self.bt = None  # bt 속성 초기화
         self.build_behavior_tree()  # bt 설정을 위한 메서드 호출
         self.state_machine.start()
         self.count=0
@@ -351,10 +363,11 @@ class ai:
     def handle_collusion(self, group, other):
         pass
 
-    def check(self):
+    def left_check(self):
         if self.ball.start==False:
             return BehaviorTree.FAIL
-        if self.ball.y - self.y > 5:
+
+        if self.ball.x < self.x:
             return BehaviorTree.SUCCESS
         else:
             return BehaviorTree.FAIL
@@ -364,8 +377,20 @@ class ai:
         self.state_machine.cur_state = new_state
         return BehaviorTree.SUCCESS
 
+
     def build_behavior_tree(self):
-        pass
+        c1 = Condition("공이 자신보다 왼쪽에 있는가?", self.left_check)  ## action 노드생성
+        a1 = Action("run_left 상태 변경", self.change_state, run_left)
+        a2 = Action("idle 상태 변경", self.change_state, idle)
+        a3 = Action("run_right 상태 변경", self.change_state, run_right)
+
+        SEQ_RUN_LEFT = Sequence("왼쪽으로 이동", c1, a1)
+        SEQ_RUN_Right = Sequence("오른쪽으로 이동", a3)
+        SEQ_IDLE = Sequence("아이들 상태로 변경",a2)
+
+        SEQ_TEST = Selector("핼로" ,SEQ_RUN_LEFT,SEQ_RUN_Right,SEQ_IDLE)
+        self.bt = BehaviorTree(SEQ_TEST)
+
 
 
 

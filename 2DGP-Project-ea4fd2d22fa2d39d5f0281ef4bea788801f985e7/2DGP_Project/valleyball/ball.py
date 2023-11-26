@@ -32,8 +32,8 @@ class Ball:
         self.dir ='None'
         self.going_vector= (-10,10)
         self.going_vector= game_world.normalize_vector(self.going_vector[0],self.going_vector[1])
-        self.speed_x=700
-        self.speed_y=700
+        self.speed_x=800
+        self.speed_y=400
         self.gravity =1# 중력 값 (원하는 값으로 조정)
 
 
@@ -48,7 +48,7 @@ class Ball:
 
             self.x += self.speed_x*self.going_vector[0]* game_framework.frame_time
             self.y += self.speed_y*self.going_vector[1]* game_framework.frame_time - self.gravity * game_framework.frame_time
-            self.gravity+=500.0*game_framework.frame_time
+            self.gravity+=100.0*game_framework.frame_time
 
             if self.going_vector[1] > 0:
                 self.dir = 'up'
@@ -62,30 +62,24 @@ class Ball:
         if (self.y > 680):
             self.y = 680
             self.gravity = 0
-            self.speed_x = 700
-            self.speed_y = 700
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
+            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
 
         if (self.x < 20):
             self.x = 20
             self.gravity = 0
-            self.speed_x = 700
-            self.speed_y = 700
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
+            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
+
+
 
         if (self.x > 1180):
             self.x = 1180
             self.gravity = 0
-            self.speed_x = 700
-            self.speed_y = 700
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
+            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], -1, 0)
 
         if (self.y < 60):
             self.y = 60
-            self.gravity = 0
-            self.speed_x = 700
-            self.speed_y = 700
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
+            self.gravity =0
+            self.going_vector = game_world.normalize_vector(20, 15)
 
     def render(self):
         if self.fireshot:
@@ -107,10 +101,8 @@ class Ball:
                     self.going_vector = game_world.normalize_vector(-25, 15)
 
                 if (self.x > other.x ):
-                    self.speed_x=1000
                     self.going_vector = game_world.normalize_vector(20, -15)
             else:
-                self.speed_x = 700
                 if (self.x < other.x):
                     self.going_vector = game_world.normalize_vector(-10, 10)
 

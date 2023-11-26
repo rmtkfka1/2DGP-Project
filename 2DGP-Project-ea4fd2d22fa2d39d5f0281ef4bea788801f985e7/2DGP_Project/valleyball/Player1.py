@@ -90,9 +90,9 @@ class player1:
         self.cur_state = idle
         self.dir = 'right'
         self.score = 0
-        self.run_speed=200
+        self.run_speed=300
         self.jump_speed=500
-        self.slide_speed=300
+        self.slide_speed=400
         self.state_machine = p1_state_machine(self)
         self.state_machine.start()
 
