@@ -172,7 +172,7 @@ class ai:
     def check(self):
         if self.ball.start==False:
             return BehaviorTree.FAIL
-        if self.ball.y - self.y > 5:
+        if self.ball.y - self.y > 20:
             return BehaviorTree.SUCCESS
         else:
             return BehaviorTree.FAIL

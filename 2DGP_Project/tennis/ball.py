@@ -48,9 +48,9 @@ class Ball:
             self.right = self.x + 20
 
             self.x += self.speed_x*self.going_vector[0]* game_framework.frame_time
-            self.y += self.speed_y*self.going_vector[1]* game_framework.frame_time - self.gravity
+            self.y += self.speed_y*self.going_vector[1]* game_framework.frame_time - self.gravity * game_framework.frame_time
 
-            self.gravity+=1.0*game_framework.frame_time
+            self.gravity+=500.0*game_framework.frame_time
             self.reflection_wall()
 
 
@@ -87,31 +87,31 @@ class Ball:
 
             if other.top - self.top >= 0 and other.top - self.top < 30:
                 self.fireshot = False
-                self.speed_x = 700
+                self.speed_x = 800
                 self.going_vector = game_world.normalize_vector(-15, 15)
                 return
 
             if other.top - self.top >= 30 and other.top - self.top < 60:
                 self.fireshot = False
-                self.speed_x = 700
+                self.speed_x = 800
                 self.going_vector = game_world.normalize_vector(-25, 15)
                 return
 
             if other.top - self.top >= 60 and other.top - self.top < 90:
-                self.speed_x=1000
+                self.speed_x=1200
                 self.fireshot = True
                 self.going_vector = game_world.normalize_vector(-50, 20)
                 return
 
             if other.top - self.top >= 60 and other.top - self.top < 90:
                 self.fireshot = False
-                self.speed_x = 700
+                self.speed_x = 800
                 self.going_vector = game_world.normalize_vector(-25, -15)
                 return
 
             if other.top - self.top >= 90 and other.top - self.top < 120:
                 self.fireshot = False
-                self.speed_x = 700
+                self.speed_x = 800
                 self.going_vector = game_world.normalize_vector(-15, -15)
                 return
 
@@ -131,31 +131,31 @@ class Ball:
 
             if other.top - self.top >= 0 and other.top - self.top < 30:
                 self.fireshot = False
-                self.speed_x = 700
+                self.speed_x = 800
                 self.going_vector = game_world.normalize_vector(15, 15)
                 return
 
             if other.top - self.top >= 30 and other.top - self.top < 60:
                 self.fireshot = False
-                self.speed_x = 700
+                self.speed_x = 800
                 self.going_vector = game_world.normalize_vector(25, 15)
                 return
 
             if other.top - self.top >= 60 and other.top - self.top < 90:
-                self.speed_x = 1000
+                self.speed_x = 1200
                 self.fireshot = True
                 self.going_vector = game_world.normalize_vector(50, 20)
                 return
 
             if other.top - self.top >= 60 and other.top - self.top < 90:
                 self.fireshot = False
-                self.speed_x = 700
+                self.speed_x = 800
                 self.going_vector = game_world.normalize_vector(25, -15)
                 return
 
             if other.top - self.top >= 90 and other.top - self.top < 120:
                 self.fireshot = False
-                self.speed_x = 700
+                self.speed_x = 800
                 self.going_vector = game_world.normalize_vector(15, -15)
                 return
 
