@@ -48,7 +48,7 @@ class Ball:
 
             self.x += self.speed_x*self.going_vector[0]* game_framework.frame_time
             self.y += self.speed_y*self.going_vector[1]* game_framework.frame_time - self.gravity * game_framework.frame_time
-            self.gravity+=100.0*game_framework.frame_time
+            self.gravity+=200.0*game_framework.frame_time
 
             if self.going_vector[1] > 0:
                 self.dir = 'up'
@@ -62,12 +62,12 @@ class Ball:
         if (self.y > 680):
             self.y = 680
             self.gravity = 0
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
+            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
 
         if (self.x < 20):
             self.x = 20
             self.gravity = 0
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 1, 0)
+            self.going_vector = game_world.normalize_vector(30, -15)
 
 
 
@@ -79,7 +79,7 @@ class Ball:
         if (self.y < 60):
             self.y = 60
             self.gravity =0
-            self.going_vector = game_world.normalize_vector(20, 15)
+            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
 
     def render(self):
         if self.fireshot:
@@ -93,19 +93,16 @@ class Ball:
 
     def handle_collusion(self,group,other):
         if group == "player1:ball":
-            print("충돌")
             self.gravity=0
 
             if other.cur_state == 'smash':
-                if(self.x < other.x):
-                    self.going_vector = game_world.normalize_vector(-25, 15)
+                if(self.x > other.x):
+                    self.going_vector = game_world.normalize_vector(30, -15)
 
-                if (self.x > other.x ):
-                    self.going_vector = game_world.normalize_vector(20, -15)
             else:
                 if (self.x < other.x):
-                    self.going_vector = game_world.normalize_vector(-10, 10)
+                    self.going_vector = game_world.normalize_vector(-20, 15)
 
-                if (self.x > other.x):
-                    self.going_vector = game_world.normalize_vector(10, 10)
+                else:
+                    self.going_vector = game_world.normalize_vector(40, 15)
 

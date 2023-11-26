@@ -57,7 +57,7 @@ class Ball:
     def reflection_wall(self):
         if (self.y > 680):
             self.y = 680
-            self.gravity = 0
+            self.gravity = -200
             self.dir='down'
             self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
         if (self.y < 60):
