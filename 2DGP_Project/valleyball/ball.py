@@ -1,6 +1,7 @@
 from pico2d import *
 from share import game_world, game_framework
 
+
 TIME_PER_ACTION = 3.0
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
 FRAMES_PER_ACTION = 60
@@ -39,7 +40,6 @@ class Ball:
 
     def update(self):
         self.frame =(self.frame+1)%60
-
         if(self.start):
             self.top = self.y + 20
             self.bottom = self.y - 20
@@ -66,12 +66,6 @@ class Ball:
             self.speed_y = 700
             self.going_vector =game_world.reflection_vector(self.going_vector[0],self.going_vector[1],0,-1)
 
-        if (self.y < 60):
-            self.y = 60
-            self.gravity =0
-            self.speed_x = 500
-            self.speed_y = 700
-            self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, 1)
 
         if (self.x < 20):
             self.x = 20
@@ -110,23 +104,22 @@ class Ball:
             self.gravity=0
 
             if other.cur_state == 'smash':
-                if(self.x > other.x):
-                    self.speed_x = 700
+                    self.speed_x = 1200
                     self.speed_y = 700
                     self.going_vector = game_world.normalize_vector(50, -15)
                     return
 
             if other.cur_state =='jump':
                 if (self.x < other.x):
-                    self.speed_x = 500
+                    self.speed_x = 700
                     self.speed_y = 700
                     self.going_vector = game_world.normalize_vector(-20, 20)
                     return
 
                 else:
-                    self.speed_x=500
-                    self.speed_y=700
-                    self.going_vector = game_world.normalize_vector(5, 2)
+                    self.speed_x = 500
+                    self.speed_y = 500
+                    self.going_vector = game_world.normalize_vector(5, 3)
                     return
 
             if other.cur_state == 'reception':
@@ -148,26 +141,26 @@ class Ball:
                     self.going_vector = game_world.normalize_vector(5, 5)
                     return
 
-        if group == "ai:ball":
+        if group == "player2:ball":
             self.gravity = 0
+
             if other.cur_state == 'smash':
-                if (self.x > other.x):
-                    self.speed_x = 500
+                    self.speed_x = 1200
                     self.speed_y = 700
                     self.going_vector = game_world.normalize_vector(-50, -15)
                     return
 
             if other.cur_state == 'jump':
-                if (self.x < other.x):
-                    self.speed_x = 500
+                if (self.x > other.x):
+                    self.speed_x = 700
                     self.speed_y = 700
                     self.going_vector = game_world.normalize_vector(20, 20)
                     return
 
                 else:
                     self.speed_x = 500
-                    self.speed_y = 700
-                    self.going_vector = game_world.normalize_vector(-5, 2)
+                    self.speed_y = 500
+                    self.going_vector = game_world.normalize_vector(-5, 3)
                     return
 
             if other.cur_state == 'reception':
@@ -178,7 +171,7 @@ class Ball:
 
             else:
                 if (self.x < other.x):
-                    self.speed_x = 500
+                    self.speed_x = 700
                     self.speed_y = 700
                     self.going_vector = game_world.normalize_vector(5, 5)
                     return

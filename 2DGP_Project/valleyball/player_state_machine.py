@@ -111,7 +111,7 @@ class run_right:
     @staticmethod
     def update(player):
         player.frame = (player.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 12
-        if (player.x <600):
+        if (player.x <570):
             player.x += player.run_speed * game_framework.frame_time
 
     @staticmethod

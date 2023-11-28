@@ -60,6 +60,7 @@ class Ball:
             self.gravity = -100
             self.dir='down'
             self.going_vector = game_world.reflection_vector(self.going_vector[0], self.going_vector[1], 0, -1)
+
         if (self.y < 60):
             self.y = 60
             self.gravity = 0
