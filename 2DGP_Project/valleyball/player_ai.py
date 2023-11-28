@@ -17,7 +17,7 @@ TIME_PER_ACTION_SMASH =1.2
 ACTION_PER_SMASH = 1.0 / TIME_PER_ACTION_SMASH
 FRAMES_PER_SMASH = 13
 
-TIME_PER_ACTION_SLIDE =1.0
+TIME_PER_ACTION_SLIDE =0.7
 ACTION_PER_SLIDE = 1.0 / TIME_PER_ACTION_SLIDE
 FRAMES_PER_SLIDE = 15
 
@@ -146,6 +146,66 @@ class run_left:
         pass
 
 
+class run_left_to_middle:
+    @staticmethod
+    def enter(player, e):
+        player.dir='left'
+        player.cur_state ='run_left_to_middle'
+        player.frame = 0
+    @staticmethod
+    def exit(player, e):
+        player.cur_state = 'idle'
+
+        pass
+
+    @staticmethod
+    def update(player):
+        player.frame = (player.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 12
+
+        player.x -= player.run_speed * game_framework.frame_time
+
+        if (player.x<900):
+            player.x = 900
+            player.state_machine.handle_event(('TIME_OUT', 0))
+
+        player.bt.run()
+
+    @staticmethod
+    def render(player):
+        player.run_left_image.clip_draw(int(player.frame) * 64, 0, 64, 86, player.x, player.y)
+        pass
+
+
+class run_right_to_middle:
+    @staticmethod
+    def enter(player, e):
+        player.dir = 'right'
+        player.cur_state = 'run_right_to_middle'
+        player.frame = 0
+
+    @staticmethod
+    def exit(player, e):
+        player.cur_state = 'idle'
+        pass
+
+    @staticmethod
+    def update(player):
+        player.frame = (player.frame + FRAMES_PER_ACTION * ACTION_PER_TIME * game_framework.frame_time) % 12
+
+        player.x += player.run_speed * game_framework.frame_time
+
+        if (player.x>900):
+            player.x=900
+            player.state_machine.handle_event(('TIME_OUT', 0))
+
+        player.bt.run()
+
+    @staticmethod
+    def render(player):
+        player.run_right_image.clip_draw(int(player.frame) * 64, 0, 64, 86, player.x, player.y)
+        pass
+
+
 class smash:
     @staticmethod
     def enter(player, e):
@@ -174,6 +234,7 @@ class smash:
             player.y -= player.jump_speed * game_framework.frame_time
 
         if player.y < 120:
+            player.y=120
             player.state_machine.handle_event(('TIME_OUT', 0))
 
         player.bt.run()
@@ -208,7 +269,7 @@ class slide_right:
 
         if (player.x < 1200):
             player.x += player.slide_speed * game_framework.frame_time
-            player.dist += 20* game_framework.frame_time
+            player.dist += 30* game_framework.frame_time
 
         if player.dist >20:
             player.state_machine.handle_event(('TIME_OUT', 0))
@@ -244,7 +305,7 @@ class slide_left:
 
         if (player.x > 600):
             player.x -= player.slide_speed * game_framework.frame_time
-            player.dist += 20* game_framework.frame_time
+            player.dist += 30* game_framework.frame_time
 
         if player.dist >20:
             player.state_machine.handle_event(('TIME_OUT', 0))
@@ -298,13 +359,16 @@ class state_machine:
             smash: {time_out: idle},
             slide_right: {time_out: idle},
             slide_left: {time_out: idle},
-            reception: {time_out: idle}
+            reception: {time_out: idle},
+            run_right_to_middle: {time_out: idle},
+            run_left_to_middle: {time_out: idle}
 
         }
 
     def start(self):
         self.cur_state.enter(self.p2,('start',0))
     def update(self):
+        print(self.cur_state)
         self.cur_state.update(self.p2)
     def render(self):
         self.cur_state.render(self.p2)
@@ -364,7 +428,7 @@ class ai:
 
     def render(self):
         self.state_machine.render()
-        draw_rectangle(0,200,100,230)
+        draw_rectangle(300,300,330,430)
 
 
     def get_bb(self):
@@ -386,12 +450,12 @@ class ai:
         return BehaviorTree.FAIL
 
     def check_left_slide(self):
-        if self.ball.y <400 and self.ball.x < self.x and abs(self.x-self.ball.x)>40:
+        if self.ball.y <300 and self.ball.x < self.x and abs(self.x-self.ball.x)>60:
             return BehaviorTree.SUCCESS
         return BehaviorTree.FAIL
 
     def check_right_slide(self):
-        if self.ball.y <400 and self.ball.x > self.x and abs(self.x-self.ball.x)>40:
+        if self.ball.y <300 and self.ball.x > self.x and abs(self.x-self.ball.x)>60:
             return BehaviorTree.SUCCESS
         return BehaviorTree.FAIL
 
@@ -412,18 +476,11 @@ class ai:
         else:
             return BehaviorTree.FAIL
 
-    def run_to_middle(self):
+    def run_right_to_middle(self):
         if(self.x <900):
-            self.x += self.run_speed * game_framework.frame_time
-
-        if (self.x > 900):
-            self.x -= self.run_speed * game_framework.frame_time
-
-        if(self.x>880 and self.x<900):
             return BehaviorTree.SUCCESS
         else:
             return BehaviorTree.FAIL
-
 
 
 
@@ -433,11 +490,11 @@ class ai:
 
         c1 = Condition("공이 상대편진영에 있는가?", self.ball_left_side)
         a1 = Action("아이들 상태로 만듬", self.change_state, idle)
-        SEQ_IDLE_STATE = Sequence("아이들",c1,a1)
+        SEQ_IDLE_STATE = Sequence("아이들",c9,c1,a1)
 
         c2 =Condition("공이 자신보다 왼쪽?", self.check_left_run)
         a2 =Action("왼쪽으로 달림",self.change_state,run_left)
-        SEQ_LEFT_RUN_STATE =Sequence("왼쪽으로 달림",c2,c9,a2)
+        SEQ_LEFT_RUN_STATE =Sequence("왼쪽으로 달림",c9,c2,a2)
 
 
         a3 = Action("오른쪽 으로 달림", self.change_state, run_right)
@@ -452,14 +509,17 @@ class ai:
         SEQ_RIGHT_SLIDE = Sequence("왼쪽으로 슬라이딩 해버리기",c9,c5,a5)
 
         c6 = Condition("공이 왼쪽 편?",self.left_side)
-        a6 = Action("센터로 이동",self.run_to_middle)
-        SEQ_MOVE_TO_CENTER= Sequence("가운데", c6,a6)
+        c7 =Condition("왼쪽에 있는가?",self.run_right_to_middle)
+        a6 =Action("오른쪽으로 상태 변경",self.change_state,run_right_to_middle)
+        SEQ_MOVE_RIGHT_TO_CENTER= Sequence("왼쪽에서 센터를 향해 이동",c9,c6,c7,a6)
 
 
 
 
 
-        root = Selector("테스트용", SEQ_MOVE_TO_CENTER,SEQ_IDLE_STATE,SEQ_LEFT_SLIDE,SEQ_RIGHT_SLIDE,SEQ_LEFT_RUN_STATE,SEQ_RIGHT_RUN_STATE)
+
+
+        root = Selector("테스트용", SEQ_MOVE_RIGHT_TO_CENTER,SEQ_IDLE_STATE,SEQ_LEFT_SLIDE,SEQ_RIGHT_SLIDE,SEQ_LEFT_RUN_STATE,SEQ_RIGHT_RUN_STATE)
 
         self.bt = BehaviorTree(root)
 

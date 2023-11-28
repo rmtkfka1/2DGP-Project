@@ -12,7 +12,7 @@ TIME_PER_ACTION_SMASH =1.2
 ACTION_PER_SMASH = 1.0 / TIME_PER_ACTION_SMASH
 FRAMES_PER_SMASH = 13
 
-TIME_PER_ACTION_SLIDE =1.0
+TIME_PER_ACTION_SLIDE =0.7
 ACTION_PER_SLIDE = 1.0 / TIME_PER_ACTION_SLIDE
 FRAMES_PER_SLIDE = 15
 
@@ -196,7 +196,7 @@ class slide_right:
 
         if (player.x < 600):
             player.x += player.slide_speed * game_framework.frame_time
-            player.dist += 20* game_framework.frame_time
+            player.dist += 30* game_framework.frame_time
 
         if player.dist >20:
             player.state_machine.handle_event(('TIME_OUT', 0))
@@ -228,7 +228,7 @@ class slide_left:
 
         if (player.x > 0):
             player.x -= player.slide_speed * game_framework.frame_time
-            player.dist += 20* game_framework.frame_time
+            player.dist += 30* game_framework.frame_time
 
         if player.dist >20:
             player.state_machine.handle_event(('TIME_OUT', 0))

@@ -1,5 +1,6 @@
 from pico2d import *
 from share import game_framework
+from valleyball.player_ai import run_right_to_middle, run_left_to_middle
 from valleyball.player_state_machine import *
 from valleyball.balley_mode import *
 
@@ -51,8 +52,7 @@ class p1_state_machine:
             smash:{ time_out:idle},
             slide_right:{time_out:idle},
             slide_left:{time_out:idle},
-            reception:{time_out:idle}
-
+            reception:{time_out:idle},
         }
 
     def start(self):

@@ -11,7 +11,8 @@ def unindent():
 def print_indent():
     for i in range(level):
         pass
-            # print("    ", end='')
+        # print("    ", end='')
+
 
 
 class BehaviorTree:
@@ -80,7 +81,7 @@ class Selector(Node):
     @Node.show_result
     def run(self):
         for i, child in enumerate(self.children):
-            # print(i, child.value, child.has_condition)
+            print(i, child.value, child.has_condition)
             if (child.value in (BehaviorTree.UNDEF, BehaviorTree.RUNNING)) or child.has_condition:
                 self.value = child.run()
                 if self.value in (BehaviorTree.RUNNING, BehaviorTree.SUCCESS):
