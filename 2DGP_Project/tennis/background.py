@@ -1,12 +1,14 @@
 from pico2d import *
 
 class background:
+    bgm =None
     def __init__(self):
         self.x=1200//2
         self.y=700//2
-
         self.image = load_image('resource/bg.png')
-
+        background.bgm=load_wav('resource/background.wav')
+        background.bgm.set_volume(20)
+        background.bgm.repeat_play()
     def update(self):
         pass
     def handle_event(self,e):

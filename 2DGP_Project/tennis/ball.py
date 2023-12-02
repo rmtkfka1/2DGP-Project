@@ -39,7 +39,7 @@ class Ball:
         self.gravity =1# 중력 값 (원하는 값으로 조정)
         self.dir ="up"
         Ball.hit_sound = load_music('resource/tennisballhit.mp3')
-        Ball.hit_sound.set_volume(32)
+        Ball.hit_sound.set_volume(50)
 
 
     def update(self):

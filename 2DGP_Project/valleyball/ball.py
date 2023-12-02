@@ -38,7 +38,7 @@ class Ball:
         self.speed_y=700
         self.gravity =1# 중력 값 (원하는 값으로 조정)
         Ball.hit_sound = load_music('resource/valleyballhit.mp3')
-        Ball.hit_sound.set_volume(32)
+        Ball.hit_sound.set_volume(50)
 
 
     def update(self):
