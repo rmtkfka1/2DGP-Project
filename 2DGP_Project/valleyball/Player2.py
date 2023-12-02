@@ -40,7 +40,7 @@ from pico2d import *
 
 
 from share import game_framework
-from valleyball.balley_mode import *
+from valleyball.balley_2player_mode import *
 
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION
@@ -102,6 +102,7 @@ class jump:
 
     @staticmethod
     def exit(player, e):
+        player.cur_state = 'idle'
         pass
 
     @staticmethod
@@ -188,7 +189,7 @@ class run_left_to_middle:
         player.frame = 0
     @staticmethod
     def exit(player, e):
-
+        player.cur_state = 'idle'
 
         pass
 
@@ -219,7 +220,7 @@ class run_right_to_middle:
 
     @staticmethod
     def exit(player, e):
-
+        player.cur_state = 'idle'
         pass
 
     @staticmethod
@@ -246,6 +247,7 @@ class smash:
         player.dist =0
     @staticmethod
     def exit(player, e):
+        player.cur_state = 'idle'
         player.dir='left'
         player.frame = 0
         player.dist =0
@@ -285,6 +287,7 @@ class slide_right:
         player.dist =0
     @staticmethod
     def exit(player, e):
+        player.cur_state = 'idle'
         player.frame = 0
         player.job =False
         player.dist =0

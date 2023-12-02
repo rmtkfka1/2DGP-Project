@@ -2,7 +2,7 @@ from pico2d import *
 
 from share import game_framework
 from tennis.behavior_tree import BehaviorTree, Action, Condition, Selector ,Sequence
-from valleyball import balley_mode
+from valleyball import balley_2player_mode
 
 
 def time_out(e):

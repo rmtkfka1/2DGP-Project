@@ -2,7 +2,7 @@ from pico2d import *
 from share import game_framework
 from valleyball.player_ai import run_right_to_middle, run_left_to_middle
 from valleyball.player_state_machine import *
-from valleyball.balley_mode import *
+from valleyball.balley_2player_mode import *
 import valleyball.server
 
 def w_down(e):

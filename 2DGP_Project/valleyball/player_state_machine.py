@@ -2,7 +2,7 @@ from pico2d import *
 
 
 from share import game_framework
-from valleyball.balley_mode import *
+from valleyball.balley_2player_mode import *
 
 TIME_PER_ACTION = 0.5
 ACTION_PER_TIME = 1.0 / TIME_PER_ACTION

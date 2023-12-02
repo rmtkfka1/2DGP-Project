@@ -247,15 +247,13 @@ class PointSystem:
         self.ball=ball
         self.p1=p1
         self.p2=p2
-        self.font = load_font('tennis/ENCR10B.TTF', 50)
-        self.winfont = load_font('tennis/ENCR10B.TTF', 200)
+        self.font = load_font('resource/ENCR10B.TTF', 50)
+        self.winfont = load_font('resource/ENCR10B.TTF', 200)
         self.state_machine = ps_state_machine(self)
         self.state_machine.start()
         if not PointSystem.bgm:
             PointSystem.bgm = load_wav("resource/jackjack.wav")
             PointSystem.bgm.set_volume(30)
-
-
 
     def update(self):
         self.state_machine.update()

@@ -20,7 +20,6 @@ class net:
 
     def render(self):
         self.image.draw(self.x,self.y)
-        draw_rectangle(*self.get_bb())
         pass
 
 
