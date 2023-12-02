@@ -1,6 +1,6 @@
 from tennis import tennis_title
 from share import game_world, game_framework
-from valleyball import balley_2player_mode
+from valleyball import balley_2player_mode, balley_title
 from tennis.background import *
 from pico2d import *
 
@@ -17,7 +17,7 @@ def handle_events():
             if mx > 350 and mx < 1000 and my > 220+150 and my <  280+150:
                 game_framework.change_mode(tennis_title)
             if mx > 350 and mx < 900 and my > 220 and my < 280:
-                game_framework.change_mode(balley_2player_mode)
+                game_framework.change_mode(balley_title)
         else:
             pass
 
