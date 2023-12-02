@@ -64,6 +64,7 @@ class p1_state_machine:
     def render(self):
         self.cur_state.render(self.bp1)
 
+
     def handle_event(self, e):
         for check_event, next_state in self.table[self.cur_state].items():
             if check_event(e):
@@ -108,6 +109,7 @@ class player1:
 
     def render(self):
         self.state_machine.render()
+
 
 
     def get_bb(self):

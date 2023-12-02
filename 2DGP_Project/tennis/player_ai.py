@@ -37,7 +37,6 @@ class idle:
 
     @staticmethod
     def update(player):
-        print("idle")
         if player.frame > 0:
             player.frame -= (ACTION_PER_TIME * FRAMES_PER_ACTION * game_framework.frame_time)
 
@@ -71,7 +70,6 @@ class jump:
 
     @staticmethod
     def update(player):
-        print("jump")
         if (player.frame < 5):
             player.frame += (ACTION_PER_TIME * 2 * FRAMES_PER_ACTION * game_framework.frame_time)
 
