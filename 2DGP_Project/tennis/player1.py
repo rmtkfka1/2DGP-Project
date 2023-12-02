@@ -61,7 +61,7 @@ class player1:
 
     def render(self):
         self.state_machine.render()
-        draw_rectangle(*self.get_bb())
+
 
 
     def get_bb(self):

@@ -1,4 +1,4 @@
-from pico2d import get_time, load_font
+from pico2d import get_time, load_font, load_wav
 
 from share import game_framework, game_world
 
@@ -66,6 +66,7 @@ class Start:
 class P1Win:
     @staticmethod
     def enter(ps, e):
+        ps.bgm.play()
         ps.p1.x = 200
         ps.p1.y = 121
 
@@ -154,6 +155,7 @@ class P2Win:
         ps.p2.cur_state = idle
         ps.p1.dir='right'
         ps.p2.dir='left'
+        ps.bgm.play()
 
         if ps.p2.score >= 4:
             ps.winner = 'p2'
@@ -226,6 +228,7 @@ class GameEnd:
         ps.p2.down = True
         ps.p1.down = True
         ps.wait_time = get_time()  # pico2d import 필요
+        ps.bgm.play()
 
     @staticmethod
     def exit(ps, e):
@@ -252,12 +255,12 @@ class GameEnd:
 class ps_state_machine:
     def __init__(self, ps):
         self.ps = ps
-
         self.cur_state = Start
         self.table = {Start:{def_p1_win:P1Win,def_p2_win:P2Win,time_out:Start},
                       P1Win:{def_p1_win:P1Win,def_p2_win:P2Win,def_game_end:GameEnd},
                       P2Win: {def_p1_win: P1Win, def_p2_win: P2Win,def_game_end:GameEnd}
                       }
+
 
     def start(self):
         self.cur_state.enter(self.ps, ('starting', 0))
@@ -279,6 +282,7 @@ class ps_state_machine:
 
 
 class PointSystem:
+    bgm=None
     def __init__(self,ball,p1,p2):
         self.ball=ball
         self.p1=p1
@@ -287,6 +291,10 @@ class PointSystem:
         self.winfont = load_font('tennis/ENCR10B.TTF', 200)
         self.state_machine = ps_state_machine(self)
         self.state_machine.start()
+        if not PointSystem.bgm:
+            PointSystem.bgm = load_wav("resource/jackjack.wav")
+            PointSystem.bgm.set_volume(30)
+
 
     def update(self):
         self.state_machine.update()

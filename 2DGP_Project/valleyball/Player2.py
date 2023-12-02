@@ -442,7 +442,7 @@ class player2:
 
     def render(self):
         self.state_machine.render()
-        draw_rectangle(*self.get_bb())
+
 
     def get_bb(self):
             return self.x - 20, self.y - 60, self.x +20, self.y + 50

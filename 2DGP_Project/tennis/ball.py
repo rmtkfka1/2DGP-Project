@@ -76,7 +76,7 @@ class Ball:
             self.fire_image.clip_draw(self.frame*101,0,101,293,self.x,self.y+101)
         else:
             self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+
 
     def get_bb(self):
         return self.x-20, self.y-20, self.x +20, self.y +20

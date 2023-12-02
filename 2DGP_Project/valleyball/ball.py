@@ -38,7 +38,7 @@ class Ball:
         self.speed_y=700
         self.gravity =1# 중력 값 (원하는 값으로 조정)
         Ball.hit_sound = load_music('resource/valleyballhit.mp3')
-        Ball.hit_sound.set_volume(50)
+        Ball.hit_sound.set_volume(90)
 
 
     def update(self):
@@ -97,7 +97,7 @@ class Ball:
 
     def render(self):
         self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+     
 
     def get_bb(self):
         return self.x-20, self.y-20, self.x +20, self.y +20

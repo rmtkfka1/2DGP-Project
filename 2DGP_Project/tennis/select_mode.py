@@ -15,9 +15,9 @@ def handle_events():
             mx, my = event.x, 700 - 1 - event.y
         elif event.type == SDL_MOUSEBUTTONDOWN and event.button == SDL_BUTTON_LEFT:
             if mx > 350 and mx < 1000 and my > 220+150 and my <  280+150:
-                game_framework.change_mode(balley_mode)
-            if mx > 350 and mx < 900 and my > 220 and my < 280:
                 game_framework.change_mode(tennis_title)
+            if mx > 350 and mx < 900 and my > 220 and my < 280:
+                game_framework.change_mode(balley_mode)
         else:
             pass
 
@@ -42,10 +42,9 @@ def draw():
 
     clear_canvas()
     game_world.render()
-    font.draw(350, 400, f'mode: valleyball', (255, 255, 255))
-    font.draw(350, 250, f'mode: Tennis', (255, 255, 255))
-    draw_rectangle(350, 220+150, 1000, 280+150) ## 배구
-    draw_rectangle(350,220,900,280) ## 테니스
+    font.draw(350, 250, f'mode: valleyball', (255, 255, 255))
+    font.draw(350, 400, f'mode: Tennis', (255, 255, 255))
+
 
     update_canvas()
 

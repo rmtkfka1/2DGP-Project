@@ -1,4 +1,4 @@
-from pico2d import get_time, load_font
+from pico2d import get_time, load_font, load_wav
 
 from share import game_framework, game_world
 from tennis import select_mode
@@ -54,6 +54,7 @@ class Start:
 class P1Win:
     @staticmethod
     def enter(ps, e):
+        ps.bgm.play()
         ps.p1.x = 1000
         ps.p1.y = 120
 
@@ -118,7 +119,7 @@ class P1Win:
 class P2Win:
     @staticmethod
     def enter(ps, e):
-
+        ps.bgm.play()
         ps.p1.x = 1000
         ps.p1.y = 120
 
@@ -186,6 +187,7 @@ class P2Win:
 class GameEnd:
     @staticmethod
     def enter(ps, e):
+        ps.bgm.play()
 
         ps.wait_time = get_time()  # pico2d import 필요
 
@@ -240,6 +242,7 @@ class ps_state_machine:
 
 
 class PointSystem:
+    bgm =None
     def __init__(self,ball,p1,p2):
         self.ball=ball
         self.p1=p1
@@ -248,6 +251,11 @@ class PointSystem:
         self.winfont = load_font('tennis/ENCR10B.TTF', 200)
         self.state_machine = ps_state_machine(self)
         self.state_machine.start()
+        if not PointSystem.bgm:
+            PointSystem.bgm = load_wav("resource/jackjack.wav")
+            PointSystem.bgm.set_volume(30)
+
+
 
     def update(self):
         self.state_machine.update()
