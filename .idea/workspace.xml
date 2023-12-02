@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8f777570-9fec-4a04-91c2-566cf081d45d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP_Project/tennis/ball.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP_Project/tennis/ball.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP_Project/tennis/behavior_tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP_Project/tennis/behavior_tree.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP_Project/valleyball/Net.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP_Project/valleyball/Net.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP_Project/valleyball/Player1.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP_Project/valleyball/Player1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP_Project/valleyball/Player2.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP_Project/valleyball/Player2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP_Project/valleyball/balley_mode.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP_Project/valleyball/player_ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP_Project/valleyball/player_ai.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP_Project/valleyball/player_state_machine.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP_Project/valleyball/player_state_machine.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2DGP_Project/valleyball/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/2DGP_Project/valleyball/server.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="2YzGuX0I8NeqFWLRk8GCHkjjixJ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="sortKey" value="BY_TIME_ASCENDING" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8f777570-9fec-4a04-91c2-566cf081d45d" name="Changes" comment="" />
+      <created>1701521217619</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701521217619</updated>
+    </task>
+    <servers />
+  </component>
+</project>

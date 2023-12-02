@@ -352,7 +352,7 @@ class reception:
     def enter(player, e):
         player.wait_time = get_time()
         player.down = False
-        player.dir ='right'
+        player.dir ='left'
         player.cur_state ='reception'
         player.frame=0
 

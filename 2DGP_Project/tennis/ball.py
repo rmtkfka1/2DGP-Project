@@ -14,6 +14,8 @@ RUN_SPEED_PPS = (RUN_SPEED_MPS * PIXEL_PER_METER)
 
 
 class Ball:
+    hit_sound = None
+
     def __init__(self):
         self.image =load_image('resource/tennis_ball.png')
         self.fire_image = load_image('resource/fireball.png')
@@ -36,6 +38,8 @@ class Ball:
         self.speed_y=700
         self.gravity =1# 중력 값 (원하는 값으로 조정)
         self.dir ="up"
+        Ball.hit_sound = load_music('resource/tennisballhit.mp3')
+        Ball.hit_sound.set_volume(32)
 
 
     def update(self):
@@ -78,6 +82,7 @@ class Ball:
         return self.x-20, self.y-20, self.x +20, self.y +20
 
     def handle_collusion(self,group,other):
+        Ball.hit_sound.play()
         if group == "player1:ball":
             self.gravity=0
             if self.top > other.top:

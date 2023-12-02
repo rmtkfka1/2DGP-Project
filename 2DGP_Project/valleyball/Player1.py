@@ -76,7 +76,7 @@ class p1_state_machine:
 
 class player1:
     def __init__(self):
-        self.x = 400
+        self.x = 200
         self.y = 120
         self.frame = 0
         self.idle_left_image = load_image('resource/balley/idle_left.png')
