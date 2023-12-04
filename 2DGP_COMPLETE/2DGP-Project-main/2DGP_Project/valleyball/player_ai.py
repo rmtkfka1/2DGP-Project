@@ -471,7 +471,6 @@ class ai:
 
     def render(self):
         self.state_machine.render()
-        draw_rectangle(0, 200, 90, 250)
 
     def get_bb(self):
         return self.x - 20, self.y - 60, self.x + 20, self.y + 50
