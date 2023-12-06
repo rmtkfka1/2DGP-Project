@@ -620,7 +620,7 @@ class ai:
 
 
 
-        SEL_ATTRACK=Selector("어택",SEQ_RECEPTION,SEQ_RIGHT_SILDE,SEQ_RUN_LEFT,SEQ_RUN_RIGHT)
+        SEL_ATTRACK=Selector("어택",SEQ_RIGHT_SILDE,SEQ_RUN_LEFT,SEQ_RUN_RIGHT)
 
         ######################################################
         root = Selector("최종결과",SEL_DEFENCE,SEL_ATTRACK)
